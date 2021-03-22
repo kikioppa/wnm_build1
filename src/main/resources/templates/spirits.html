@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>WNM</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <script type="text/javascript" th:src="@{/js/Chart.js}"></script>
+  <script type="text/javascript" th:src="@{/js/Chart.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/spirit_chart.js}"></script>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+
+  ======================================================== -->
+
+
+
+
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+  <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
+    <div class="container py-2 py-md-5">
+
+      <div class="row align-items-start">
+        <div class="col-md-2">
+          <ul class="custom-menu">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="works.html">Works</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 d-none d-md-block  mr-auto">
+          <div class="tweet d-flex">
+            <span class="icofont-twitter text-white mt-2 mr-3"></span>
+            <div>
+              <p><em>어쩌고 저쩌고. <br> <a href="#">t.co/v82jsk</a></em></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-none d-md-block">
+          <h3>어쩌고</h3>
+          <p>저쩌고 설명글임. <br> <a href="#">qeqe3000@daum.net</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <nav class="navbar navbar-light custom-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">WNM</a>
+
+      <a href="#" class="burger" data-toggle="collapse" data-target="#main-navbar">
+        <span></span>
+      </a>
+
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-6" data-aos="fade-up">
+            <h2>위스키 가격 및 테이스팅 노트</h2>
+            <p>국내 정식 판매원 및 소비자들의 데이터를 기반으로 가격추이를 제공하고 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section pb-0">
+        <div class="container">
+          <div class="row align-items-stretch">
+            <div class="col-md-5" data-aos="fade-up">
+                <!--최적 540 x 540 or 1200 x 800  나중에 지움-->
+                <img src="assets/img/glen11.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-md-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="h3">Glendronach</h2>
+                <h3 class="h3">43 Year Old 1971 Batch 11</h3>
+                <h4 class="h4">Cask #2920</h4>
+                <p class="mb-4"><span class="text-muted">Design</span></p>
+
+                <div class="mb-5">
+                  <p>코에서는
+                    잘 익은 가을 과일-특히 블랙베리와 붉은 자두의 섬세한 혼합. 풍부한 Oloroso 셰리와 설탕에 절인 오렌지 조각. 매운 오트밀 비스킷과 구운 오크 향이 탁월한 무게감과 밸런스를 제공합니다.
+                    입에서는
+                    수제 매실 푸딩에 자유롭게 퍼진 올로로소 셰리와 씁쓸한 초콜릿 소스의 단맛. 여기에는 계피, 피망 및 육두구와 같은 스파이시 노트가 모두 들어 있습니다. 풀바디의 부드러운 탄닌.</p>
+                </div>
+              <div>
+                <canvas id="quoteChart" width="700" height="400"></canvas>
+              </div>
+
+              <table id="example"  class="display" width="100%" data-page-length="5">
+                <thead>
+                <tr>
+                  <th scope="col">구입처</th>
+                  <th scope="col">거래가</th>
+                  <th scope="col">거래일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="mart : ${martList}">
+                  <td class="font-weight-bold" th:text="${mart.martLocation}"></td>
+                  <td class="font-weight-light" th:text="${mart.martPhone}"></td>
+                  <td class="font-weight-bold" th:text="${mart.martPhone}"></td>
+                </tr>
+
+                </tbody>
+              </table>
+
+              <!--<img th:src="${spirit.caskType}"/>-->
+
+
+
+                <h4 class="h4 mb-3">What I did</h4>
+                <ul class="list-unstyled list-line mb-5">
+                  <li>Design</li>
+                 >
+                </ul>
+
+                <p><a href="#" class="readmore">Visit Website</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Testimonials Section ======= -->
+
+    <div class="site-section pb-0">
+      <div class="container">
+        <div class="row align-items-stretch">
+            <div class="col-md-5" data-aos="fade-up" data-aos-delay="100">
+                  <h3 class="h3">기본정보</h3>
+
+              <table class="table table-striped">
+
+                <tbody>
+                  <tr>
+                  <th>BOTTLER</th>
+                  <td>Distillery</td>
+                  </tr>
+                  <tr>
+                    <th>DISTILLER</th>
+                    <td>Glendronach</td>
+                  </tr>
+                  <tr>
+                    <th>CASK TYPE</th>
+                    <td>Pedro Ximenez Sherry Puncheon</td>
+                  </tr>
+                  <tr>
+                    <th>CASK #</th>
+                    <td>#2920</td>
+                  </tr>
+                  <tr>
+                    <th>ABV</th>
+                    <td>48.6%</td>
+                  </tr>
+                  <tr>
+                    <th>TYPE</th>
+                    <td>Single Malt Scotch</td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+
+
+
+            </div>
+            <div class="col-md-5 ml-auto" data-aos="fade-up">
+                <canvas id="tastingChart" width="100" height="100"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section pt-0">
+      <div class="container">
+        <div class="owl-carousel testimonial-carousel">
+
+          <div class="testimonial-wrap">
+            <div class="testimonial">
+              <img src="assets/img/minu.jpg" alt="Image" class="img-fluid">
+              <blockquote>
+                <p>미누빠 미누마스터 시음노트 바로가기.</p>
+              </blockquote>
+              <p>&mdash; Jean Hicks</p>
+            </div>
+          </div>
+
+          <div class="testimonial-wrap">
+            <div class="testimonial">
+              <img src="assets/img/mac50.jpg" alt="Image" class="img-fluid">
+              <blockquote>
+                <p>박사장 시음노트 바로가기</p>
+              </blockquote>
+              <p>&mdash; Chris Stanworth</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Copyright WNM. All Rights Reserved</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-right">
+          <a href="#"><span class="icofont-twitter"></span></a>
+          <a href="#"><span class="icofont-facebook"></span></a>
+          <a href="#"><span class="icofont-dribbble"></span></a>
+          <a href="#"><span class="icofont-behance"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

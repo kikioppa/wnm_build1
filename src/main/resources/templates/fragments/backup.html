@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <th:block th:include="fragments/headerinc :: head"></th:block>
+
+</head>
+
+<body>
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/scoreboards}">게시판</a></li>
+                        <li><a href="#" th:href="@{/datepicker}">빠른예약</a></li>
+                        <li><a href="#" th:href="@{/records}">순위표</a></li>
+                        <li><a href="#" th:href="@{/record/new}">점수등록</a></li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="">
+                    <h2>KiKi Bowling</h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="../../static/images/bowling.jpg" width="300" th:src="@{/images/bowling.jpg}"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container my-5">
+    <h3> Update Student</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-8">
+                <form action="#" th:action="@{/martList/update/{id}(id=${mart.id})}" th:object="${mart}" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="martName" class="col-form-label">martName</label> <input type="text" th:field="*{martName}" class="form-control" id="martName" placeholder="martName"> <span th:if="${#fields.hasErrors('martName')}" th:errors="*{martName}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="martLocation" class="col-form-label">martLocation</label> <input type="text" th:field="*{martLocation}" class="form-control" id="martLocation" placeholder="martLocation"> <span th:if="${#fields.hasErrors('martLocation')}" th:errors="*{martLocation}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="martPhone" class="col-form-label">martPhone</label> <input type="text" th:field="*{martPhone}" class="form-control" id="martPhone" placeholder="martPhone"> <span th:if="${#fields.hasErrors('martPhone')}" th:errors="martPhone" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="martHours" class="col-form-label">martHours</label> <input type="text" th:field="*{martHours}" class="form-control" id="martHours" placeholder="martHours"> <span th:if="${#fields.hasErrors('martHours')}" th:errors="martHours" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="martStatus" class="col-form-label">martStatus</label>
+                            <input type="checkbox" th:field="*{martStatus}" class="form-control" id="martStatus" placeholder="martStatus">
+                            <span th:if="${#fields.hasErrors('martStatus')}" th:errors="martStatus" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <input type="submit" class="btn btn-primary" value="Update Mart">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
