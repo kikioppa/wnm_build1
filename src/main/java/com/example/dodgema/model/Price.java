@@ -30,8 +30,8 @@ public class Price {
     @Column(name = "price_id")
     private Long id;
 
-    @Column(name="spirit_Name")
-    private long spiritName;
+    @Column(name="spirit_Code")
+    private Long spiritCode;
 
     @Column(name = "price")
     private int price;

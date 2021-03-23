@@ -3,7 +3,7 @@ window.onload = function(){
         url: "http://localhost:8080/price_data",
         method: "GET",
         data:{
-            spiritName : "${spirit.getSpiritName}"
+            spiritCode : "${spirit.getSpiritCode}"
         },
         success: function(data) {
             var chartData = [];

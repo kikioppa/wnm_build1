@@ -52,7 +52,7 @@ public class SpiritController {
 
         price.setPrice(price.getPrice());
         price.setDate(price.getDate());
-
+        price.setSpiritCode(price.getSpiritCode());
 
 
 
@@ -126,10 +126,10 @@ public class SpiritController {
     }
 
 
-    @RequestMapping("/price_data/")
+    @RequestMapping("/price_data/{spiritCode}")
     @ResponseBody
-    public List<Price> price_data(String name) {
-        return priceService.findByName(name);
+    public List<Price> price_data(Long spiritCode) {
+        return priceService.findBySpiritCode(spiritCode);
     }
 
 /*

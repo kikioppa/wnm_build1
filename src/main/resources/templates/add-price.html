@@ -76,8 +76,8 @@
             <form th:action="@{/add_price_add}" th:object="${price}" enctype="multipart/form-data" method="post">
 
                 <div class="form-group">
-                    <label for="spiritId">스피릿 ID</label>
-                    <input type="text" th:field="*{spiritId}" class="form-control" id="spiritId" style="width: 50%" placeholder="예)위스키 or 와인">
+                    <label for="spiritId">스피릿 CODE</label>
+                    <input type="text" th:field="*{spiritCode}" class="form-control" id="spiritId" style="width: 50%" placeholder="예)위스키 or 와인">
                 </div>
 
                 <div class="form-group">

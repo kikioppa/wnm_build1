@@ -30,7 +30,7 @@ public class PriceService {
         return priceRepository.findById(id).get();
     }
 
-    public List<Price> findByName(String name){
-        return priceRepository.findByName(name);
+    public List<Price> findBySpiritCode(Long spiritCode){
+        return priceRepository.findBySpiritCode(spiritCode);
     }
 }

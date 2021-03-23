@@ -10,5 +10,5 @@ import java.util.List;
 public interface PriceRepository extends JpaRepository<Price, Long> {
 
 
-    List<Price> findByName(String name);
+    List<Price> findBySpiritCode(Long spiritCode);
 }

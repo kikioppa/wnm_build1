@@ -100,6 +100,12 @@
                                 <th scope="col">거래일</th>
                             </tr>
                             </thead>
+                            <p>3번</p>
+                            <img class="card-img-top img-fluid" th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
+                            <p>4번</p>
+                            <tr th:each="spirit : ${spirit}">
+                                <th scope="row"> <img th:src="@{'/zzz/' +${spirit.spiritImg}}" alt=""></th>
+                            </tr>
                             <tbody>
                      <!--       <tr th:each="mart : ${martList}">
                                 <td class="font-weight-bold" th:text="${mart.martLocation}"></td>

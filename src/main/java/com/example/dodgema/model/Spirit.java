@@ -31,10 +31,11 @@ public class Spirit {
 
     @Column(name = "spirit_name")
     private String spiritName;
+    @Column(name = "spirit_code")
+    private Long spiritCode;
     @OneToMany(fetch = EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name="spirit_name")
+    @JoinColumn(name="spirit_code")
     private Collection<Price> price;
-
     private String spiritImg;
     @Column(name = "spirit_score")
     private int spiritScore;
