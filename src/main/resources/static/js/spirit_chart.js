@@ -1,14 +1,17 @@
 window.onload = function(){
     $.ajax({
-        url: "http://localhost:8080/data",
+        url: "http://localhost:8080/price_data",
         method: "GET",
+        data:{
+            spiritName : "${spirit.getSpiritName}"
+        },
         success: function(data) {
             var chartData = [];
             var chartXdata = []
             console.log(data);
             console.log("추세데이타");
             for (var i in data) {
-                chartData.push(data[i].martPhone)
+                chartData.push(data[i].price)
                 chartXdata.push(data[i].id)
             }
 
@@ -69,7 +72,7 @@ window.onload = function(){
                 }
             })
 
-            $.ajax({
+           /* $.ajax({
                 url: "http://localhost:8080/data2",
                 method: "GET",
                 success: function(data) {
@@ -116,7 +119,7 @@ window.onload = function(){
 
                     })
                 }
-            })
+            })*/
 
 
 

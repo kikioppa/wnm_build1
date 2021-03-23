@@ -8,21 +8,33 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
+@SequenceGenerator(
+        name="SPIRIT_SEQ_GEN",
+        sequenceName = "SPIRIT_SEQ",
+        initialValue = 1,
+        allocationSize = 1
+)
 @Getter
 @Setter
 @Table(name = "spirit")
 public class Spirit {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SPIRIT_SEQ_GEN")
     private long id;
 
     @Column(name = "spirit_name")
     private String spiritName;
+    @OneToMany(fetch = EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name="spirit_name")
+    private Collection<Price> price;
+
     private String spiritImg;
     @Column(name = "spirit_score")
     private int spiritScore;
@@ -40,7 +52,6 @@ public class Spirit {
     private String type;
     @Column(name = "region")
     private String region;
-
     @Column(name = "smokey")
     private int smokey;
     @Column(name = "peat")

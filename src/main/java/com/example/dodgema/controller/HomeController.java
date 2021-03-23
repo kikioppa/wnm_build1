@@ -18,8 +18,7 @@ import com.example.dodgema.repository.SpiritRepository;
 @RequiredArgsConstructor
 public class HomeController {
     //private final 멤버서비스 들어가야댐
-    private final SpiritService spiritService;
-    private final PagingService pagingService;
+
     private final SpiritRepository spiritRepository;
     private final int maxItem = 6;
     private final int viewPage = 5;
@@ -35,6 +34,7 @@ public class HomeController {
         return "index";
     }
 
+/*
     @GetMapping(value = "/{sort}/{page}")
     public String homePage(@PathVariable("page") int page, @PathVariable("sort") String sort, HttpSession session, Model model) {
         List<?> spirits = new ArrayList<>();
@@ -52,6 +52,7 @@ public class HomeController {
         return "index";
     }
 
+*/
 
 
 
