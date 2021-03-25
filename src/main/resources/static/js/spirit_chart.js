@@ -1,10 +1,10 @@
+
+
 window.onload = function(){
+
     $.ajax({
-        url: "http://localhost:8080/price_data",
+        url: "http://localhost:8080/price_data/" + spiritCode,
         method: "GET",
-        data:{
-            spiritCode : "${spirit.getSpiritCode}"
-        },
         success: function(data) {
             var chartData = [];
             var chartXdata = []
@@ -41,7 +41,7 @@ window.onload = function(){
                         ,
                         borderWidth: 2
                         ,
-                        lineTension:0.0001
+                        lineTension:0.4
                     }]
                 },
                 options: {
@@ -72,19 +72,39 @@ window.onload = function(){
                 }
             })
 
-           /* $.ajax({
-                url: "http://localhost:8080/data2",
+            $.ajax({
+                url: "http://localhost:8080/taste_data/"+ spiritId,
                 method: "GET",
-                success: function(data) {
-                    console.log(data);
-                    var tastingData = [];
-                    var tastingXdata = [];
-                    for (var i in data) {
-                        tastingData.push(data[i].martHours)
-                        tastingXdata.push(data[i].martName)
-                    }
-                    console.log(data[i]);
+                success: function(result) {
 
+
+                    var tastingData = [];
+                    var tastingXdata = ['브라이니 (바다향)','플로럴 (꽃향)','오일','바디감 (full)','허브','피트','프루티 (과일향)'
+                        ,'리치함','짠맛','스모키','스윗 (sweat)','타르트 (tart)','바닐라'];
+
+                    tastingData.push(result.briny
+                        ,result.floral
+                        ,result.oily
+                        ,result.full
+                        ,result.herbal
+                        ,result.peat
+                        ,result.fruity
+                        ,result.rich
+                        ,result.salty
+                        ,result.smokey
+                        ,result.sweat
+                        ,result.tart
+                        ,result.vanilla
+
+                    )
+                    //tastingdata.push(result.floral)
+                    /*var tastingData = [];
+                    var tastingXdata = [];
+                    for (var i in result) {
+                        tastingData.push(result.briny)
+                        tastingXdata.push(result.floral)
+                    }*/
+                    console.log(result[i]+"냥냥");
 
                     var ctx = document.getElementById('tastingChart');
 
@@ -93,7 +113,6 @@ window.onload = function(){
                         data: {
                             labels: tastingXdata,
                             datasets: [{
-                                label: '# of Votes',
                                 data: tastingData,
                                 backgroundColor: [
                                     '#3A3335',
@@ -119,14 +138,7 @@ window.onload = function(){
 
                     })
                 }
-            })*/
-
-
-
-
-
-
-
+            })
         }
     })
 };

@@ -25,6 +25,10 @@
 
     <script type="text/javascript" th:src="@{/js/Chart.js}"></script>
     <script type="text/javascript" th:src="@{/js/Chart.min.js}"></script>
+    <script th:inline="javascript">
+        var spiritCode = [[${spirit.spiritCode}]];
+        var spiritId = [[${spirit.id}]];
+    </script>
     <script type="text/javascript" th:src="@{/js/spirit_chart.js}"></script>
 
     <!-- Template Main CSS File -->
@@ -34,28 +38,6 @@
 
 <body>
 <header th:insert="fragments/header"></header>
-
-<!--
-<p>1번</p>
-<p th:text="${spirit.spiritName}"></p>
-<p>2번 이미지</p>
-<img th:src="${spirit.spiritImg}"/>
-<p>3번</p>
-<img class="card-img-top img-fluid" th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
-<p>4번</p>
-<tr th:each="spirit : ${spirit}">
-      <th scope="row"> <img th:src="@{'/zzz/' +${spirit.spiritImg}}" alt=""></th>
-</tr>
--->
-
-<!--<img src="assets/img/mac.png" alt="Image" class="img-fluid">-->
-
-<!--
-    <div class="testimonial-wrap">
-        <div class="testimonial">
-            <img src="assets/img/mac2.png" alt="Image" class="img-fluid">
-        </div>
-    </div>-->
 
 <main id="main">
 
@@ -74,7 +56,8 @@
                 <div class="row align-items-stretch">
                     <div class="col-md-5" data-aos="fade-up">
                         <!--최적 540 x 540 or 1200 x 800  나중에 지움-->
-                        <img src="assets/img/glen11.jpg" alt="Image" class="img-fluid">
+                        <!--<img src="assets/img/glen11.jpg" alt="Image" class="img-fluid">-->
+                        <img class="card-img-top img-fluid" th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
                     </div>
                     <div class="col-md-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
                         <h2 class="h3">Glendronach</h2>
@@ -100,12 +83,12 @@
                                 <th scope="col">거래일</th>
                             </tr>
                             </thead>
-                            <p>3번</p>
-                            <img class="card-img-top img-fluid" th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
-                            <p>4번</p>
-                            <tr th:each="spirit : ${spirit}">
-                                <th scope="row"> <img th:src="@{'/zzz/' +${spirit.spiritImg}}" alt=""></th>
+                            <tr th:each="price : ${price}">
+                                <td class="font-weight-bold" th:text="${price.buyLocation}"></td>
+                                <td class="font-weight-bold" th:text="${price.price}">+W</td>
+                                <td class="font-weight-bold" th:text="${price.date}"></td>
                             </tr>
+
                             <tbody>
                      <!--       <tr th:each="mart : ${martList}">
                                 <td class="font-weight-bold" th:text="${mart.martLocation}"></td>
@@ -117,8 +100,6 @@
                         </table>
 
                         <!--<img th:src="${spirit.caskType}"/>-->
-
-
 
                         <h4 class="h4 mb-3">What I did</h4>
                         <ul class="list-unstyled list-line mb-5">

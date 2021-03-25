@@ -33,6 +33,9 @@ public class Price {
     @Column(name="spirit_Code")
     private Long spiritCode;
 
+    @Column(name="buy_location")
+    private  String buyLocation;
+
     @Column(name = "price")
     private int price;
     @Column(name = "date")

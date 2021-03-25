@@ -29,6 +29,7 @@ public class SpiritService {
     public Spirit findById(Long id){
         return spiritRepository.findById(id).get();
     }
+
 /*
     List<Spirit> AllSpirit();
     Spirit getSpiritById(long id);

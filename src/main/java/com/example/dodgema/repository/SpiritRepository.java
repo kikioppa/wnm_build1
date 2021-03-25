@@ -1,6 +1,7 @@
 package com.example.dodgema.repository;
 
 import com.example.dodgema.model.Mart;
+import com.example.dodgema.model.Price;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,5 +16,4 @@ import java.util.List;
 @Repository
 public interface SpiritRepository extends JpaRepository <Spirit, Long> {
     List<Spirit> findAll();
-
 }

@@ -2,7 +2,6 @@ package com.example.dodgema.controller;
 
 
 
-import com.example.dodgema.model.Mart;
 import com.example.dodgema.model.Price;
 import com.example.dodgema.model.Spirit;
 import com.example.dodgema.service.PriceService;
@@ -14,8 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -120,18 +118,39 @@ public class SpiritController {
     public String showSpirit(@PathVariable("id") long id, Model model) {
 
 
-
         model.addAttribute("spirit", spiritService.findById(id));
+        model.addAttribute("price",priceService.findTo(spiritService.findById(id).getSpiritCode()));
         return "spirit-view";
     }
 
 
     @RequestMapping("/price_data/{spiritCode}")
     @ResponseBody
-    public List<Price> price_data(Long spiritCode) {
+    public List<Price> price_data(@PathVariable("spiritCode") Long spiritCode) {
+
         return priceService.findBySpiritCode(spiritCode);
     }
 
+    @GetMapping("/taste_data/{id}")
+    @ResponseBody
+    public Map showSpirit(@PathVariable("id") long id) {
+        Spirit spirit = spiritService.findById(id);
+        Map result = new HashMap<String,Object>();
+        result.put("briny",spirit.getBriny());
+        result.put("floral",spirit.getFloral());
+        result.put("oily",spirit.getOily());
+        result.put("full",spirit.getFull());
+        result.put("herbal",spirit.getHerbal());
+        result.put("peat",spirit.getPeat());
+        result.put("fruity",spirit.getFruity());
+        result.put("rich",spirit.getRich());
+        result.put("salty",spirit.getSalty());
+        result.put("smokey",spirit.getSmokey());
+        result.put("sweat",spirit.getSweat());
+        result.put("tart",spirit.getTart());
+        result.put("vanilla",spirit.getVanilla());
+        return result;
+    }
 /*
     @RequestMapping("/flavor_data")
     @ResponseBody
