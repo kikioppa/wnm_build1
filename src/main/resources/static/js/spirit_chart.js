@@ -12,7 +12,7 @@ window.onload = function(){
             console.log("추세데이타");
             for (var i in data) {
                 chartData.push(data[i].price)
-                chartXdata.push(data[i].id)
+                chartXdata.push(data[i].date)
             }
 
             var ctx = document.getElementById('quoteChart');
@@ -22,7 +22,7 @@ window.onload = function(){
                 data: {
                     labels: chartXdata,
                     datasets: [{
-                        label: '# of Votes',
+                        label: '거래금액 :',
                         data: chartData,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
