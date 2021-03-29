@@ -19,11 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -64,6 +60,19 @@ public class LoginController {
         return modelAndView;
     }
 
+    @RequestMapping(value="/kakao_signup", method = RequestMethod.GET)
+    public ModelAndView kakao_signup(){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("kakao_signup");
+        return modelAndView;
+    }
+
+    @GetMapping("/auth/kakao/callback") //redirect_uri : /auth/kakao/callback
+    public @ResponseBody String kakaoCallback(String code) {
+        return "코드는 :" + code;
+    }
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

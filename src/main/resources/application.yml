@@ -2,6 +2,8 @@
 server:
   port: 8080
   servlet:
+    session:
+      tracking-modes: cookie
 mybatis:
   mapper-locations: mapper/StudentMapper.xml
   type-aliases-package: com.example.dodgema.domain.Student
