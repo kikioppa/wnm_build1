@@ -69,10 +69,6 @@ public class LoginController {
         return modelAndView;
     }
 
-    @GetMapping("/auth/kakao/callback") //redirect_uri : /auth/kakao/callback
-    public @ResponseBody String kakaoCallback(String code) {
-        return "코드는 :" + code;
-    }
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
