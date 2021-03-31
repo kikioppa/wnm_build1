@@ -78,6 +78,9 @@ spring:
 file:
   path: C:/Users/irlink/Documents/uploadFiles/
 
+jwt:
+  salt: MYSALT
+  expmin: 60
 
   #Customize the local save path of the uploaded file
 

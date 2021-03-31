@@ -2,6 +2,7 @@ package com.example.dodgema.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,16 +12,21 @@ import com.example.dodgema.model.User;
 import com.example.dodgema.repository.ConfirmationTokenRepository;
 import com.example.dodgema.repository.UserRepository;
 import com.example.dodgema.service.EmailSenderService;
+import com.example.dodgema.service.SNSDataService;
 import com.example.dodgema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -35,6 +41,8 @@ public class LoginController {
     @Autowired
     private ConfirmationTokenRepository confirmationTokenRepository;
 
+    @Autowired
+    private  SNSDataService SDService;
 
     @Autowired
     private EmailSenderService emailSenderService;
@@ -68,6 +76,36 @@ public class LoginController {
         modelAndView.setViewName("kakao_signup");
         return modelAndView;
     }
+
+    @RequestMapping(value="/kakao_register", method = RequestMethod.GET)
+    public ModelAndView kakao_register(){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+
+        String nickName = SDService.getSNSNickname();
+        String email = SDService.getSNSEmail();
+        modelAndView.addObject("nickName", nickName);
+        modelAndView.addObject("email", email);
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("kakao_register");
+        System.out.println("닉넴"+nickName);
+        System.out.println("메일"+email);
+        return modelAndView;
+    }
+
+    @PostMapping("/kakao_completed")
+    public String kakao_completed(@ModelAttribute(value = "user") User user){
+
+        user.setEmail(SDService.getSNSEmail());
+        user.setNickName(SDService.getSNSNickname());
+
+        userService.saveKakaoUser(user);
+
+        return "index";
+    }
+
+
+
 
 
 

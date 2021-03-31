@@ -1,9 +1,15 @@
 package com.example.dodgema.controller;
 
 
+import com.example.dodgema.model.User;
+import com.example.dodgema.service.JwtService;
+import com.example.dodgema.service.SNSAccessTokenService;
+import com.example.dodgema.service.SNSDataService;
+import com.example.dodgema.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +25,17 @@ import java.util.Map;
 @Controller
 @RequestMapping("/kakao")
 public class KakaoController {
+
+    @Autowired
+    JwtService jwtService;
+
+    @Autowired
+    SNSDataService SDService;
+
+    @Autowired
+    SNSAccessTokenService SService;
+    @Autowired
+    UserService userService;
 
     static Logger logger = LoggerFactory.getLogger(KakaoController.class);
 
@@ -58,35 +75,39 @@ public class KakaoController {
         map.put("Authorization", "Bearer "+ access_token);
         out = conn.HttpPostConnection("https://kapi.kakao.com/v2/user/me", map).toString();
         String email = mapper.readTree(out).findValue("kakao_account").findValue("email").toString();
-        //String nickname = mapper.readTree(out).findValue("properties").findValue("nickname").toString();
+        String nickname = mapper.readTree(out).findValue("properties").findValue("nickname").toString();
         System.out.println("email : "+  email);
-       // System.out.println("nickname : "+  nickname);
+        System.out.println("nickname : "+  nickname);
 
-     /*   access_token = access_token.substring(1, access_token.length()-1);
+        access_token = access_token.substring(1, access_token.length()-1);
         email = email.substring(1, email.length()-1);
-        nickname = nickname.substring(1, nickname.length()-1);*/
+        nickname = nickname.substring(1, nickname.length()-1);
         System.out.println(access_token);
+        ///////////////동의항목 취소시 에러처리
+        //return "redirect:http://localhost:80";
 
 
+        User user = userService.getUserByEmail(email);
 
-     return "redirect:http://localhost:80";
-
-
-        /*User user = userAccountService.getUserByEmail(email);
-        if(user != null && (user.getLoginkind() & 2)> 1) { // 카카오 가입정보가 있을경우 로그인
+        System.out.println("없냐?" + user);
+        //if(user != null && (user.getLoginKind() & 2)> 1) { // 카카오 가입정보가 있을경우 로그인
+        if(user != null) {
             String token = jwtService.create(user, 1, access_token);
             SService.makeSNSData(token, email);
-            return "redirect:http://"+fronturl+"/user/snsLogin";
-        }
-        if(user != null) { // 다른 종류 가입정보가 있을경우
-            SDService.makeSNSData(nickname, email, 2);
-            return "redirect:http://"+fronturl+"/user/snsCombine";
+            return "redirect:http://localhost:80/kakao_login";
         }
         else { // 가입정보가 없는경우
             SDService.makeSNSData(nickname, email, 2);
-            return "redirect:http://"+fronturl+"/user/snsRegist";
-        }*/
+            return "redirect:http://localhost:80/kakao_register";
+        }
 //
+
+
+        /*        if(user != null) { // 다른 종류 가입정보가 있을경우
+            SDService.makeSNSData(nickname, email, 2);
+            return "redirect:http://"+fronturl+"/user/snsCombine";
+        }
+         */
     }
 
 
