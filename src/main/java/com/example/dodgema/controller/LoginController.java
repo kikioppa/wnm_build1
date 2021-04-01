@@ -12,6 +12,7 @@ import com.example.dodgema.model.User;
 import com.example.dodgema.repository.ConfirmationTokenRepository;
 import com.example.dodgema.repository.UserRepository;
 import com.example.dodgema.service.EmailSenderService;
+import com.example.dodgema.service.SNSAccessTokenService;
 import com.example.dodgema.service.SNSDataService;
 import com.example.dodgema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,8 @@ public class LoginController {
     @Autowired
     private  SNSDataService SDService;
 
+    @Autowired
+    private SNSAccessTokenService SService;
     @Autowired
     private EmailSenderService emailSenderService;
 
@@ -102,6 +105,15 @@ public class LoginController {
         userService.saveKakaoUser(user);
 
         return "index";
+    }
+
+    @PostMapping("/kakao_login")
+    public String kakao_login(@ModelAttribute(value = "user") User user){
+
+        System.out.println(SService.getToken()+"야양");
+        
+        
+        return "redirect:/";
     }
 
 

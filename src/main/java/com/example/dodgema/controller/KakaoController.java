@@ -94,7 +94,7 @@ public class KakaoController {
         if(user != null) {
             String token = jwtService.create(user, 1, access_token);
             SService.makeSNSData(token, email);
-            return "redirect:http://localhost:80/kakao_login";
+            return "redirect:/";
         }
         else { // 가입정보가 없는경우
             SDService.makeSNSData(nickname, email, 2);
