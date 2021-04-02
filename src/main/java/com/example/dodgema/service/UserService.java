@@ -6,6 +6,7 @@ import com.example.dodgema.repository.RoleRepository;
 import com.example.dodgema.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,8 @@ import java.util.Optional;
 @Service("userService")
 
 public class UserService {
+    @Value("${wikin.key}")
+    private String wikinKey;
 
     private static UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -62,7 +65,9 @@ public class UserService {
     }
 
     public void saveKakaoUser(User user) {
-        //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        String rawPassword = user.getPassword();
+        String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+        user.setPassword(encPassword);
         user.setActive(1);
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));

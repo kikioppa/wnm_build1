@@ -10,11 +10,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,6 +33,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("/kakao")
 public class KakaoController {
+
+    @Value("${wikin.key}")
+    private String wikinKey;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     JwtService jwtService;
@@ -94,6 +108,14 @@ public class KakaoController {
         if(user != null) {
             String token = jwtService.create(user, 1, access_token);
             SService.makeSNSData(token, email);
+
+
+            System.out.println(user+"엥?");
+            Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), wikinKey));
+            SecurityContextHolder.getContext().setAuthentication(auth);
+
+            System.out.println("어쏀티케이션 타야대는데");
+            System.out.println(SService.getToken());
             return "redirect:/";
         }
         else { // 가입정보가 없는경우

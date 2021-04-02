@@ -16,8 +16,10 @@ import com.example.dodgema.service.SNSAccessTokenService;
 import com.example.dodgema.service.SNSDataService;
 import com.example.dodgema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,15 +28,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.security.authentication.AuthenticationManager;
 import java.util.Map;
 
 @Controller
 public class LoginController {
 
 
+    @Value("${wikin.key}")
+    private String wikinKey;
+
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private UserService userService;
@@ -101,13 +109,15 @@ public class LoginController {
 
         user.setEmail(SDService.getSNSEmail());
         user.setNickName(SDService.getSNSNickname());
+        user.setPassword(wikinKey);
+
 
         userService.saveKakaoUser(user);
 
         return "index";
     }
 
-    @PostMapping("/kakao_login")
+    @GetMapping("/kakao_login")
     public String kakao_login(@ModelAttribute(value = "user") User user){
 
         System.out.println(SService.getToken()+"야양");

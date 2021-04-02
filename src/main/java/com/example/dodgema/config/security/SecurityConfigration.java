@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -32,6 +33,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserService userService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -51,11 +53,13 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.
-                jdbcAuthentication()
+                 jdbcAuthentication()
                 .usersByUsernameQuery(usersQuery)
                 .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource)
-                .passwordEncoder(bCryptPasswordEncoder);
+                .passwordEncoder(bCryptPasswordEncoder)
+                .and()
+                .userDetailsService(principalDetailService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -67,7 +71,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/confirm-account").permitAll()
-                .antMatchers("/addMart/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/add_spirit/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .permitAll()
                 .and()
@@ -85,6 +89,14 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Autowired
+    private PrincipalDetailService principalDetailService;
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
@@ -101,23 +113,9 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/**")
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                 .antMatchers("/**")
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/assets/**");
     }
 
-    @Configuration
-    public class WebConfig implements WebMvcConfigurer {
-        /**
-         * 개발 환경에서의 크로스 도메인 이슈를 해결하기 위한 코드로
-         * 운영 환경에 배포할 경우에는 15~18행을 주석 처리합니다.
-         * <p>
-         * ※크로스 도메인 이슈: 브라우저에서 다른 도메인으로 URL 요청을 하는 경우 나타나는 보안문제
-         */
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/api/**").allowCredentials(true);
-        }
 
-
-    }
 }

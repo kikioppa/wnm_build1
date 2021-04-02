@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!-- ======= Navbar ======= -->
 <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
     <div class="container py-2 py-md-5">
@@ -24,6 +26,12 @@
             <div class="col-md-4 d-none d-md-block">
                 <h3>어쩌고</h3>
                 <p>저쩌고 설명ddddddddddddddddddd글임. <br> <a href="#">qeqe3000@daum.net</a></p>
+
+                <div sec:authorize="isAuthenticated()">
+                    <h2 sec:authentication="name">Name</h2>
+                    <a href="/logout" th:href="@{/logout}">Logout</a>
+                </div>
+
             </div>
         </div>
 
@@ -39,3 +47,5 @@
 
     </div>
 </nav>
+
+</html>
