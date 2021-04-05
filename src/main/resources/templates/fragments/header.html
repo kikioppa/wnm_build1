@@ -29,6 +29,7 @@
 
                 <div sec:authorize="isAuthenticated()">
                     <h2 sec:authentication="name">Name</h2>
+                    <a로그인됌</a>
                     <a href="/logout" th:href="@{/logout}">Logout</a>
                 </div>
 

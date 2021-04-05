@@ -30,13 +30,13 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfigration extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
     UserService userService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Qualifier("userRepository")
     @Autowired
     UserRepository userRepository;
 
@@ -76,7 +76,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
+                .loginPage("/kakao/login").failureUrl("/kakao/login?error=true")
                 .defaultSuccessUrl("/admin/home")
                 .usernameParameter("email")
                 .passwordParameter("password")

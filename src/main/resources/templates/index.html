@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="utf-8">
@@ -51,7 +52,13 @@
                     <a th:href="@{/add_spirit}">스피릿 등록</a>
                     <a th:href="@{/add_price}">가격 등록</a>
                     <a th:href="@{/kakao_signup}">회원가입</a>
-                    <a th:href="@{/kakao_login}">로그인</a>
+                    <a th:href="@{/kakao/login}">로그인</a>
+
+                    <div sec:authorize="isAuthenticated()">
+                        <h2 sec:authentication="name">Name</h2>
+                        <a>로그인됌</a>
+                    </div>
+
                 </div>
             </div>
 

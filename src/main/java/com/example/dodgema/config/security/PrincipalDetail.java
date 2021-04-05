@@ -60,8 +60,9 @@ public class PrincipalDetail implements UserDetails{
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Collection<GrantedAuthority> collectors = new ArrayList<>();
-        //collectors.add(()->{ return "user_ROLE"+user.getRole();});
+        collectors.add(()-> "user_ROLE"+user.getRoles());
 
+        System.out.println("user.getRoles" + user.getRoles());
         return collectors;
     }
 

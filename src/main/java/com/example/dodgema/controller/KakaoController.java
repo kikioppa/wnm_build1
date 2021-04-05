@@ -65,8 +65,9 @@ public class KakaoController {
         loginUrl.append("&redirect_uri=");
         loginUrl.append("http://localhost:80/kakao/callback"); //카카오 앱에 등록한 redirect URL
         loginUrl.append("&response_type=code");
-        System.out.println(loginUrl.toString());
+        System.out.println("으헝"+loginUrl.toString());
         return "redirect:"+loginUrl.toString();
+
     }
 
     @RequestMapping(value = "/callback", method = RequestMethod.GET)

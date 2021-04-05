@@ -1,7 +1,9 @@
 package com.example.dodgema.controller;
 
+import com.example.dodgema.config.security.PrincipalDetail;
 import com.example.dodgema.model.Spirit;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,6 @@ import com.example.dodgema.service.*;
 import com.example.dodgema.repository.SpiritRepository;
 
 
-
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
@@ -23,6 +24,7 @@ public class HomeController {
     private final int maxItem = 6;
     private final int viewPage = 5;
 
+    //@AuthenticationPrincipal PrincipalDetail principal
     @GetMapping(value = "/")
     public String home(HttpSession session, Model model) {
         List<Spirit> spiritIdx = spiritRepository.findAll();
