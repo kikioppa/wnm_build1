@@ -114,7 +114,7 @@ public class LoginController {
 
         userService.saveKakaoUser(user);
 
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/kakao_login")

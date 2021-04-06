@@ -25,6 +25,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -71,7 +72,7 @@ public class KakaoController {
     }
 
     @RequestMapping(value = "/callback", method = RequestMethod.GET)
-    public String redirect(@RequestParam String code, HttpServletResponse res) throws IOException, ParseException {
+    public String redirect(@RequestParam String code, HttpServletResponse res,HttpSession session) throws IOException, ParseException {
         //code
         //사용자가 취소 누르면 error 파라메터를 받음
         // 그때 여기서 구분해야할듯
@@ -112,9 +113,14 @@ public class KakaoController {
 
 
             System.out.println(user+"엥?");
-            Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), wikinKey));
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), wikinKey));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
+
+
+            session.setAttribute("access_token", access_token);
+            System.out.println("세션"+session.getAttribute("access_token"));
+            System.out.println("어센틱"+authentication);
             System.out.println("어쏀티케이션 타야대는데");
             System.out.println(SService.getToken());
             return "redirect:/";
@@ -123,15 +129,48 @@ public class KakaoController {
             SDService.makeSNSData(nickname, email, 2);
             return "redirect:http://localhost:80/kakao_register";
         }
+
 //
-
-
         /*        if(user != null) { // 다른 종류 가입정보가 있을경우
             SDService.makeSNSData(nickname, email, 2);
             return "redirect:http://"+fronturl+"/user/snsCombine";
         }
          */
     }
+
+
+    @GetMapping("/logout")
+    public String access(HttpSession session) throws IOException {
+
+
+        String access_token = (String)session.getAttribute("access_token");
+
+
+        StringBuffer loginUrl = new StringBuffer();
+        loginUrl.append("https://kauth.kakao.com");
+        loginUrl.append("/oauth/logout?client_id="); //카카오 앱에 있는 REST KEY
+        loginUrl.append("80f815c1c8e70bed6e21bce82a93aa5e");
+        loginUrl.append("&logout_redirect_uri=");
+        loginUrl.append("http://localhost:80/logout"); //카카오 앱에 등록한 redirect URL
+        System.out.println("로그아웃 리다이렉션"+loginUrl.toString());
+        return "redirect:"+loginUrl.toString();
+
+
+
+
+  /*      Map<String, String> map = new HashMap<String, String>();
+        map.put("Authorization", "Bearer "+ access_token);
+
+        String result = conn.HttpPostConnection("https://kapi.kakao.com/v1/user/logout", map).toString();
+
+
+        System.out.println("로그아웃"+result);*/
+
+      //  return "redirect:/logout";
+
+
+    }
+
 
 
 

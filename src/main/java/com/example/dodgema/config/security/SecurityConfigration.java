@@ -64,29 +64,27 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+        http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/index").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
-                .antMatchers("/confirm-account").permitAll()
-                .antMatchers("/add_spirit/**").hasAuthority("ADMIN").anyRequest()
-                .authenticated().and().csrf().disable().formLogin()
-                .permitAll()
+                .antMatchers("/",
+                                        "/index",
+                                        "/kakao/**",
+                                        "/kakao_register",
+                                        "/kakao_signup",
+                                        "/kakao_completed",
+                                        "/kakao/logout").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/kakao/login").failureUrl("/kakao/login?error=true")
-                .defaultSuccessUrl("/admin/home")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .successHandler(successHandler())
-                .permitAll()
-                .and().logout()
+                 .loginPage("/kakao_signup")
+                .loginProcessingUrl("/kakao/login")
+                .defaultSuccessUrl("/")
+        .and()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and().exceptionHandling()
-                .accessDeniedPage("/access-denied");
-
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true);
     }
 
     @Autowired
@@ -113,9 +111,8 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                 .antMatchers("/**")
+                 //.antMatchers("/**")
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/assets/**");
     }
-
 
 }

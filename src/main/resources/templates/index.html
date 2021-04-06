@@ -54,9 +54,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     <a th:href="@{/kakao_signup}">회원가입</a>
                     <a th:href="@{/kakao/login}">로그인</a>
 
-                    <div sec:authorize="isAuthenticated()">
-                        <h2 sec:authentication="name">Name</h2>
-                        <a>로그인됌</a>
+
+                    <div th:if="${#authorization.expr('isAuthenticated()')}">
+                        <h2 th:text="${#authentication.name}"></h2>
+                        <a th:href="@{/kakao/logout}">Logout</a>
                     </div>
 
                 </div>
