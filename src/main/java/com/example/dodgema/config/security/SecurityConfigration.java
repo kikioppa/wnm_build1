@@ -69,10 +69,13 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                                         "/index",
                                         "/kakao/**",
+                                        "/spirit_view/**",
                                         "/kakao_register",
                                         "/kakao_signup",
                                         "/kakao_completed",
-                                        "/kakao/logout").permitAll()
+                                        "/kakao/logout",
+                                        "/.well-known/**"
+                        ).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

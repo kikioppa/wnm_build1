@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     initialize: true
-    password: root
+    password: Shjshj131@@
     testWhileIdle: true
     url: jdbc:mysql://localhost:3306/yoroyo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
@@ -66,6 +66,9 @@ jwt:
 
 wikin:
   key: qeqe3000
+
+url:
+  add: http://wikin.kr:80/
   #Customize the local save path of the uploaded file
 
 

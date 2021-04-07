@@ -38,6 +38,9 @@ public class KakaoController {
     @Value("${wikin.key}")
     private String wikinKey;
 
+    @Value("${url.add}")
+    private String urladd;
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -64,7 +67,7 @@ public class KakaoController {
         loginUrl.append("https://kauth.kakao.com/oauth/authorize?client_id=");
         loginUrl.append("80f815c1c8e70bed6e21bce82a93aa5e"); //카카오 앱에 있는 REST KEY
         loginUrl.append("&redirect_uri=");
-        loginUrl.append("http://localhost:80/kakao/callback"); //카카오 앱에 등록한 redirect URL
+        loginUrl.append(urladd+"kakao/callback"); //카카오 앱에 등록한 redirect URL
         loginUrl.append("&response_type=code");
         System.out.println("으헝"+loginUrl.toString());
         return "redirect:"+loginUrl.toString();
@@ -79,7 +82,7 @@ public class KakaoController {
         Map<String, String> map = new HashMap<String, String>();
         map.put("grant_type", "=authorization_code");
         map.put("client_id", "=80f815c1c8e70bed6e21bce82a93aa5e"); //카카오 앱에 있는 REST KEY
-        map.put("redirect_uri", "=http://localhost:80/kakao/callback"); //카카오 앱에 등록한 redirect URL
+        map.put("redirect_uri", "="+urladd+"kakao/callback"); //카카오 앱에 등록한 redirect URL
         map.put("code", "="+code);
 
         System.out.println("탄다탄다");
@@ -127,7 +130,7 @@ public class KakaoController {
         }
         else { // 가입정보가 없는경우
             SDService.makeSNSData(nickname, email, 2);
-            return "redirect:http://localhost:80/kakao_register";
+            return "redirect:"+urladd+"kakao_register";
         }
 
 //
@@ -151,7 +154,7 @@ public class KakaoController {
         loginUrl.append("/oauth/logout?client_id="); //카카오 앱에 있는 REST KEY
         loginUrl.append("80f815c1c8e70bed6e21bce82a93aa5e");
         loginUrl.append("&logout_redirect_uri=");
-        loginUrl.append("http://localhost:80/logout"); //카카오 앱에 등록한 redirect URL
+        loginUrl.append(urladd+"logout"); //카카오 앱에 등록한 redirect URL
         System.out.println("로그아웃 리다이렉션"+loginUrl.toString());
         return "redirect:"+loginUrl.toString();
 

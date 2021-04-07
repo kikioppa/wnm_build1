@@ -3,7 +3,7 @@
 window.onload = function(){
 
     $.ajax({
-        url: "http://localhost:80/price_data/" + spiritCode,
+        url: "http://wikin.kr:80/price_data/" + spiritCode,
         method: "GET",
         success: function(data) {
             var chartData = [];
@@ -73,7 +73,7 @@ window.onload = function(){
             })
 
             $.ajax({
-                url: "http://localhost:80/taste_data/"+ spiritId,
+                url: "http://wikin.kr:80/taste_data/"+ spiritId,
                 method: "GET",
                 success: function(result) {
 
