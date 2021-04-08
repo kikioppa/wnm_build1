@@ -1,6 +1,22 @@
 
+#################################################################
+#key-store: C:/Users/irlink/Desktop/서버/wikin.kr/wikin.pfx
+#key-store-password: qeqe3000
+#key-store-type: PKCS12
+#trust-store: C:/Users/irlink/Desktop/서버/wikin.kr/trust.jks
+#trust-store-password: qeqe3000
+
 server:
-  port: 80
+  http2:
+    enabled: true
+  ssl:
+    enabled: true
+    key-store: wikin.pfx
+    key-store-password: qeqe3000
+    key-store-type: PKCS12
+    trust-store: trust.jks
+    trust-store-password: qeqe3000
+  port: 443
   servlet:
     session:
       tracking-modes: cookie
@@ -13,7 +29,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     initialize: true
-    password: Shjshj131@@
+    password:
     testWhileIdle: true
     url: jdbc:mysql://localhost:3306/yoroyo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
@@ -68,7 +84,7 @@ wikin:
   key: qeqe3000
 
 url:
-  add: http://wikin.kr:80/
+  add: https://wikin.kr:443/
   #Customize the local save path of the uploaded file
 
 
