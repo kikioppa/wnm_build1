@@ -86,7 +86,7 @@
                             <tr th:each="price : ${price}">
                                 <td class="font-weight-bold" th:text="${price.buyLocation}"></td>
                                 <td class="font-weight-bold" th:text="${price.price}">+W</td>
-                                <td class="font-weight-bold" th:text="${price.date}"></td>
+                                <td class="font-weight-bold" th:text="${#dates.format(price.date, 'yyyy-mmm-dd')}"></td>
                             </tr>
 
                             <tbody>
