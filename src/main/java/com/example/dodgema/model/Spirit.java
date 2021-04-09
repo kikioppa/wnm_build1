@@ -38,7 +38,7 @@ public class Spirit {
     @Column(name = "spirit_code")
     private Long spiritCode;
     @Column(name = "cask_number")
-    private String castNumber;
+    private String caskNumber;
     @OneToMany(fetch = EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="spirit_code")
     private Collection<Price> price;

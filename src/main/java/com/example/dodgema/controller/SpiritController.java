@@ -74,7 +74,7 @@ public class SpiritController {
         try{
             String baseDir = fileRealPath;
             String savedName = UUID.randomUUID().toString() + "_" + files.getOriginalFilename();
-            String filePath = baseDir + "\\" + savedName;
+            String filePath = baseDir + "/" + savedName;
 
             files.transferTo((new File(filePath)));
             //spring security
@@ -83,6 +83,7 @@ public class SpiritController {
             spirit.setAbv(spirit.getAbv());
             spirit.setSpiritName(spirit.getSpiritName());
             spirit.setSpiritImg(savedName);
+            spirit.setCaskNumber(spirit.getCaskNumber());
             spirit.setSpiritScore(spirit.getSpiritScore());
             spirit.setCaskType(spirit.getCaskType());
             spirit.setSpiritRating(spirit.getSpiritRating());

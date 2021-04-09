@@ -6,6 +6,12 @@
 #trust-store: C:/Users/irlink/Desktop/서버/wikin.kr/trust.jks
 #trust-store-password: qeqe3000
 
+
+#카카로 로그인
+#Redirect URI : https://wikin.kr/kakao/callback
+#Logout Redirect URI : https://wikin.kr/logout
+
+
 server:
   http2:
     enabled: true
@@ -20,6 +26,8 @@ server:
   servlet:
     session:
       tracking-modes: cookie
+  tomcat:
+
 mybatis:
   mapper-locations: mapper/StudentMapper.xml
   type-aliases-package: com.example.dodgema.domain.Student
@@ -33,6 +41,7 @@ spring:
     testWhileIdle: true
     url: jdbc:mysql://localhost:3306/yoroyo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
+
 
   devtools:
     livereload:
@@ -74,7 +83,7 @@ spring:
     suffix: .html
 
 file:
-  path: C:/Users/irlink/Documents/uploadFiles/
+  path: root/img/
 
 jwt:
   salt: MYSALT

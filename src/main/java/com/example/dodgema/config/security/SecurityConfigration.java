@@ -61,7 +61,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                 .and()
                 .userDetailsService(principalDetailService).passwordEncoder(bCryptPasswordEncoder);
     }
-
+//.antMatchers("/add-spirit","/add-price").hasAnyAuthority("ADMIN").anyRequest()
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
@@ -76,6 +76,8 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                                         "/kakao/logout",
                                         "/.well-known/**"
                         ).permitAll()
+                .antMatchers("/add_price").hasAuthority("ADMIN")
+                .antMatchers("/add_spirit").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

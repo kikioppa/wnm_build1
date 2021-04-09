@@ -6,7 +6,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Whiskey And More</title>
+    <title>위스키를 즐겁게</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -38,8 +38,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <div class="container">
             <div class="row mb-5 align-items-center">
                 <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-                    <h2>Whiskey And More</h2>
-                    <p class="mb-0">위스키를 즐겁게</p>
+                   <!-- <p class="mb-0">위스키를 즐겁게</p>-->
                 </div>
                 <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
                     <div id="filters" class="filters">
@@ -50,13 +49,22 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <a href="#" data-filter=".photography">Beer</a>
                     </div>
                     <a th:href="@{/add_spirit}">스피릿 등록</a>
-                    <a th:href="@{/add_price}">가격 등록</a>
+                   <!-- <a th:href="@{/add_price}">가격 등록</a>-->
                     <a th:href="@{/kakao_signup}">회원가입</a>
                     <a th:href="@{/kakao/login}">로그인</a>
 
 
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <a th:href="@{/add_price}">가격 등록</a>
+                    </div>
+
+
+                    <th:block th:each="authority : ${#authentication.authorities}">
+                        <div th:text="${authority}"></div>
+                    </th:block>
+
                     <div th:if="${#authorization.expr('isAuthenticated()')}">
-                        <h2 th:text="${#authentication.name}"></h2>
+                        <h4 th:text="${#authentication.name}"></h4>
                         <a th:href="@{/kakao/logout}">Logout</a>
                     </div>
 
@@ -244,11 +252,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <p class="mb-1">&copy; Copyright MyPortfolio. All Rights Reserved</p>
+
                 <div class="credits">
                     <!--
                   FOOTER-->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    <p class="mb-1">&copy;2021-2021 WIKIN Inc. All Rights Reserved </p>
                 </div>
             </div>
             <div class="col-sm-6 social text-md-right">

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Whiskey And More</title>
+    <title>위스키를 즐겁게</title>
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
@@ -62,11 +62,21 @@
                         <textarea type="textarea" th:field="*{spiritContent}" class="form-control" id="spiritContent" style="width: 50%" placeholder="설명"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label for="type">리쿼 타입</label>
+                        <textarea type="textarea" th:field="*{type}" class="form-control" id="type" style="width: 50%" placeholder="설명"></textarea>
+                    </div>
 
                     <div class="form-group">
                         <label for="caskType">캐스크 타입</label>
                         <input type="text" th:field="*{caskType}" class="form-control" id="caskType">
                     </div>
+
+                    <div class="form-group">
+                        <label for="caskType">캐스크 넘버</label>
+                        <input type="text" th:field="*{caskNumber}" class="form-control" id="caskNumber">
+                    </div>
+
                     <div class="form-group">
                         <label for="abv">알콜 도수</label>
                         <input style="width: 50%" type="text" th:field="*{abv}" class="form-control" id="abv" placeholder="예) 48.5%(퍼센트 붙여주세요)">
@@ -121,6 +131,11 @@
                     <div class="form-group">
                         <label for="spiritScore">스코어</label>
                         <input type="text" th:field="*{spiritScore}" class="form-control" style="width: 50%" id="spiritScore" placeholder="1-100점">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rare">희귀도</label>
+                        <input type="text" th:field="*{rare}" class="form-control" style="width: 50%" id="rare" placeholder="1-5">
                     </div>
 
                     <button type="submit" class="btn btn-primary" value="dd">저장</button>
