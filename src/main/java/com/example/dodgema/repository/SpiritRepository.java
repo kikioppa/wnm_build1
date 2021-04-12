@@ -16,4 +16,6 @@ import java.util.List;
 @Repository
 public interface SpiritRepository extends JpaRepository <Spirit, Long> {
     List<Spirit> findAll();
+
+    List<Spirit> findTop6ByOrderByDateDesc();
 }

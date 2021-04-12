@@ -41,13 +41,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                    <!-- <p class="mb-0">위스키를 즐겁게</p>-->
                 </div>
                 <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
-                    <div id="filters" class="filters">
+
                         <a href="#" data-filter="*" class="active">All</a>
-                        <a href="#" data-filter=".web">Whiskey</a>
+                        <a th:href="@{/spirit/1}" >Whiskey</a>
                         <a href="#" data-filter=".design">Wine</a>
                         <a href="#" data-filter=".branding">Brandy</a>
                         <a href="#" data-filter=".photography">Beer</a>
-                    </div>
                     <!--<a th:href="@{/kakao_signup}">회원가입</a>-->
 
 
@@ -92,37 +91,61 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                                 <img src="assets/img/mac2.png" alt="Image" class="img-fluid">
                             </div>
                         </div>
-
-
                     </div>
-
                 </div>
+
             </section><!-- End Testimonials Section -->
 
             <!-- 스피릿 리스트 시작-->
-
-            <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-                <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-                    <a th:href="@{/spirits}" class="item-wrap fancybox">
+            <h3>가격정보 및 테이스팅 노트 알아보기</h3>
+        <div class="row">
+            <div id="portfolio-grid" class=" item web col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
+                <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
+                    <div class="work-info">
+                        <h3 th:text="${spirit.spiritTitle}"></h3>
+                        <span th:text="${spirit.type}"></span>
+                    </div>
+                    <img class="img-thumbnail img-responsive" src="#"  th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
+                </a>
+            </div>
+        </div>
+        </div>
+            <!--<div id="portfolio-grid" class="row no-gutter" th:each="spirit : ${spiritIdx}" data-aos="fade-up" data-aos-delay="200">
+                <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
                         <div class="work-info">
-                            <h3>Boxed Water</h3>
+                            <h3 th:text="${spirit.spiritTitle}"></h3>
                             <span>Web</span>
                         </div>
-                        <img class="img-fluid" src="assets/img/img_1.jpg">
-                    </a>
-                </div>
+                    <img class="img-thumbnail img-responsive" src="#"  th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
+                </a>
+            </div>-->
+        </div>
+    </section>
+    <!-- End  Works Section -->
 
 
-                <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-                    <a href="spirits.html" class="item-wrap fancybox">
-                        <div class="work-info">
-                            <h3>Build Indoo</h3>
-                            <span>Photography</span>
-                        </div>
-                        <img class="img-fluid" src="assets/img/img_2.jpg">
-                    </a>
-                </div>
+            <!-- <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+                 <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+                     <a th:href="@{/spirits}" class="item-wrap fancybox">
+                         <div class="work-info">
+                             <h3>Boxed Water</h3>
+                             <span>Web</span>
+                         </div>
+                         <img class="img-fluid" src="assets/img/img_1.jpg">
+                     </a>
+                 </div>
 
+
+                 <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
+                     <a href="spirits.html" class="item-wrap fancybox">
+                         <div class="work-info">
+                             <h3>Build Indoo</h3>
+                             <span>Photography</span>
+                         </div>
+                         <img class="img-fluid" src="assets/img/img_2.jpg">
+                     </a>
+                 </div>
+ -->
 
                <!-- <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
                     <a th:href="@{/spirits/{id}(id=${spirit.id})}" class="item-wrap fancybox">
@@ -135,8 +158,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 </div>
 -->
 
-                <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
-                    <a th:href="@{/spirits/{id}(id=${spirit.id})}" class="item-wrap fancybox">
+               <!-- <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
+                    <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
                         <div class="work-info">
                             <h3>Boxed Water</h3>
                             <span>Web</span>
@@ -144,12 +167,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <img class="img-thumbnail img-responsive" src="#" th:src="@{'/uploadFiles/' + ${spirit.spiritImg}}" alt="">
                     </a>
                 </div>
+-->
 
 
-
-            </div>
-        </div>
-    </section><!-- End  Works Section -->
 
     <!-- ======= Clients Section ======= -->
     <section class="section">

@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-9">
-                            <input type="text" th:value = "${email}" id = "email"
+                        <span>사용 이메일(ID로 사용됩니다.)</span><input type="text" th:value = "${email}" id = "email"
                                    class="form-control" readonly/> <label
                                 th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                                 class="validation-message"></label>
@@ -54,7 +54,7 @@
                         <div class="col-sm-9">
                             <label th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"
                                    class="validation-message"></label>
-                            <input type="text" th:value = "${nickName}" id = "nickName"
+                            <span>닉네임</span><input type="text" th:value = "${nickName}" id = "nickName"
                                    class="form-control" readonly/>
                         </div>
                     </div>

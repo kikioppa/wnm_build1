@@ -20,6 +20,7 @@ import com.example.dodgema.repository.SpiritRepository;
 public class HomeController {
     //private final 멤버서비스 들어가야댐
 
+    private final PagingService pagingService;
     private final SpiritRepository spiritRepository;
     private final int maxItem = 6;
     private final int viewPage = 5;
@@ -27,7 +28,7 @@ public class HomeController {
     //@AuthenticationPrincipal PrincipalDetail principal
     @GetMapping(value = "/")
     public String home(HttpSession session, Model model) {
-        List<Spirit> spiritIdx = spiritRepository.findAll();
+        List<Spirit> spiritIdx = spiritRepository.findTop6ByOrderByDateDesc();
 
 
         model.addAttribute("spiritIdx", spiritIdx);
@@ -35,6 +36,27 @@ public class HomeController {
         System.out.println("1번");
         return "index";
     }
+/*
+    @GetMapping(value = "/spirit_list")
+    public String spiritList(HttpSession session, Model model) {
+        List<Spirit> spiritIdx = spiritRepository.findAll();
+
+
+        model.addAttribute("spiritIdx", spiritIdx);
+
+        System.out.println("1번");
+        return "spirit-list";
+    }*/
+
+    @GetMapping(value = "/spirit/{page}")
+    public String orderBySpirit(@PathVariable("page") int page, HttpSession session, Model model) {
+        List<?> spiritIdx = pagingService.getBoardPage(spiritRepository.findAll(), page, this.maxItem, this.viewPage, model);
+
+        model.addAttribute("spiritIdx", spiritIdx);
+        //model.addAttribute("sort", "review");
+        return "spirit-list";
+    }
+
 
 /*
     @GetMapping(value = "/{sort}/{page}")

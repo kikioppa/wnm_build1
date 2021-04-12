@@ -74,6 +74,7 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                                         "/kakao_signup",
                                         "/kakao_completed",
                                         "/kakao/logout",
+                                        "/zzz/**",
                                         "/.well-known/**"
                         ).permitAll()
                 .antMatchers("/add_price").hasAuthority("ADMIN")
