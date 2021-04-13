@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="assets/img/favico.ico" rel="icon">
     <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -43,6 +43,40 @@
 
     <section class="section">
         <div class="container">
+            <div class="row mb-5 align-items-center">
+                <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
+                    <!-- <p class="mb-0">위스키를 즐겁게</p>-->
+                </div>
+                <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <!--<a href="#" data-filter="*" class="active">All</a>-->
+                        <a class="vv" th:href="@{/spirit/1}" >Whiskey &nbsp</a>
+                        <!--<a class="vv" th:href="@{/spirit/1}" >프로모션 &nbsp</a>-->
+                        <!--   <a href="#" data-filter=".design">Wine</a>
+                           <a href="#" data-filter=".branding">Brandy</a>
+                           <a href="#" data-filter=".photography">Beer</a>-->
+                        <!--<a th:href="@{/kakao_signup}">회원가입</a>-->
+                    </div>
+
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <a th:href="@{/add_spirit}">스피릿 등록</a>
+                        <a th:href="@{/add_price}">가격 등록</a>
+                    </div>
+
+                    <div th:if="${#authorization.expr('isAuthenticated()')}">
+                        <h5 th:text="${#authentication.name}+'님 환영합니다.'"></h5>
+                        <a th:href="@{/kakao/logout}">Logout</a>
+                    </div>
+
+                    <div th:unless="${#authorization.expr('isAuthenticated()')}">
+                        <a th:href="@{/kakao/login}" style="color: white">로그인</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+
             <div class="row mb-4 align-items-center">
                 <div class="col-md-6" data-aos="fade-up">
                     <h2>위스키 가격 및 테이스팅 노트</h2>
@@ -54,7 +88,7 @@
         <div class="site-section pb-0">
             <div class="container">
                 <div class="row align-items-stretch">
-                    <div class="col-md-5" data-aos="fade-up">
+                    <div class="col-md-6" data-aos="fade-up">
                         <!--최적 540 x 540 or 1200 x 800  나중에 지움-->
                         <!--<img src="assets/img/glen11.jpg" alt="Image" class="img-fluid">-->
                         <img class="card-img-top img-fluid" th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
@@ -166,7 +200,7 @@
     </section>
 
 
-    <section class="section pt-0">
+  <!--  <section class="section pt-0">
         <div class="container">
             <div class="owl-carousel testimonial-carousel">
 
@@ -193,17 +227,31 @@
             </div>
 
         </div>
-    </section><!-- End Testimonials Section -->
+    </section>&lt;!&ndash; End Testimonials Section &ndash;&gt;-->
 
 </main><!-- End #main -->
 
 
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="credits">
+                    <!--
+                  FOOTER-->
+                    <p class="mb-1">&copy;2021-2021 WIKIN Inc. All Rights Reserved </p>
+                </div>
+            </div>
 
 
+            <!-- SNS 자리-->
+        </div>
+    </div>
+</footer>
 
 
-
-
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
 
 <!-- Vendor JS Files -->

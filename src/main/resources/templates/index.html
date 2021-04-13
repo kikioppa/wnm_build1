@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/favico.ico" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -27,6 +27,17 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+    <script data-ad-client="ca-pub-2196393703035889" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W0XRJXYKQ"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2W0XRJXYKQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2W0XRJXYKQ');
+    </script>
 </head>
 
 <body>
@@ -37,41 +48,45 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <section class="section site-portfolio">
         <div class="container">
             <div class="row mb-5 align-items-center">
-                <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-                   <!-- <p class="mb-0">위스키를 즐겁게</p>-->
-                </div>
-                <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
-
-                        <a href="#" data-filter="*" class="active">All</a>
-                        <a th:href="@{/spirit/1}" >Whiskey</a>
-                        <a href="#" data-filter=".design">Wine</a>
-                        <a href="#" data-filter=".branding">Brandy</a>
-                        <a href="#" data-filter=".photography">Beer</a>
-                    <!--<a th:href="@{/kakao_signup}">회원가입</a>-->
-
-
-
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <a th:href="@{/add_spirit}">스피릿 등록</a>
-                        <a th:href="@{/add_price}">가격 등록</a>
+                    <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
+                       <!-- <p class="mb-0">위스키를 즐겁게</p>-->
                     </div>
+                    <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <!--<a href="#" data-filter="*" class="active">All</a>-->
+                            <a class="vv" th:href="@{/spirit/1}" >Whiskey &nbsp</a>
+                            <!--<a class="vv" th:href="@{/spirit/1}" >프로모션 &nbsp</a>-->
+                         <!--   <a href="#" data-filter=".design">Wine</a>
+                            <a href="#" data-filter=".branding">Brandy</a>
+                            <a href="#" data-filter=".photography">Beer</a>-->
+                            <!--<a th:href="@{/kakao_signup}">회원가입</a>-->
+                        </div>
+
+                        <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                            <a th:href="@{/add_spirit}">스피릿 등록</a>
+                            <a th:href="@{/add_price}">가격 등록</a>
+                        </div>
+
+                        <div th:if="${#authorization.expr('isAuthenticated()')}">
+                            <h5 th:text="${#authentication.name}+'님 환영합니다.'"></h5>
+                            <a th:href="@{/kakao/logout}">Logout</a>
+                        </div>
+
+                        <div th:unless="${#authorization.expr('isAuthenticated()')}">
+                            <a th:href="@{/kakao/login}" style="color: white">로그인</a>
+                        </div>
 
 
-                   <!-- <th:block th:each="authority : ${#authentication.authorities}">
-                        <div th:text="${authority}"></div>
-                    </th:block>
--->
-                    <div th:if="${#authorization.expr('isAuthenticated()')}">
-                        <h4 th:text="${#authentication.name}+'님 환영합니다.'"></h4>
-                        <a th:href="@{/kakao/logout}">Logout</a>
                     </div>
-
-                    <div th:unless="${#authorization.expr('isAuthenticated()')}">
-                        <a th:href="@{/kakao/login}">로그인</a>
-                    </div>
-
-                </div>
             </div>
+
+
+
+               <!-- <th:block th:each="authority : ${#authentication.authorities}">
+                    <div th:text="${authority}"></div>
+                </th:block>
+-->
+
 
 
             <!-- ======= Testimonials Section ======= -->
@@ -79,193 +94,50 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <div class="container">
 
                     <div class="owl-carousel testimonial-carousel">
-
+                        <!--default = 966 x  678-->
                         <div class="testimonial-wrap">
                             <div class="testimonial">
-                                <img src="assets/img/mac.png" alt="Image" class="img-fluid">
+                                <img src="assets/img/mac22.png" alt="Image" class="img-fluid">
                             </div>
                         </div>
 
                         <div class="testimonial-wrap">
                             <div class="testimonial">
-                                <img src="assets/img/mac2.png" alt="Image" class="img-fluid">
+                                <img src="assets/img/mac22.png" alt="Image" class="img-fluid">
                             </div>
                         </div>
                     </div>
                 </div>
-
             </section><!-- End Testimonials Section -->
 
             <!-- 스피릿 리스트 시작-->
-            <h3>가격정보 및 테이스팅 노트 알아보기</h3>
-        <div class="row">
-            <div id="portfolio-grid" class=" item web col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
-                <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
-                    <div class="work-info">
-                        <h3 th:text="${spirit.spiritTitle}"></h3>
-                        <span th:text="${spirit.type}"></span>
-                    </div>
-                    <img class="img-thumbnail img-responsive" src="#"  th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
-                </a>
-            </div>
-        </div>
-        </div>
-            <!--<div id="portfolio-grid" class="row no-gutter" th:each="spirit : ${spiritIdx}" data-aos="fade-up" data-aos-delay="200">
-                <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
+            <span></span>
+            <h6 class="vv">Price Chart & Tasting Notes</h6>
+            <h7>가격정보 및 테이스팅 노트</h7>
+            <span></span>
+            <div class="row">
+                <div th:each="spirit : ${spiritIdx}" class=" item web col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
                         <div class="work-info">
                             <h3 th:text="${spirit.spiritTitle}"></h3>
-                            <span>Web</span>
+                            <!--<span th:text="${spirit.type}"></span> -->
                         </div>
-                    <img class="img-thumbnail img-responsive" src="#"  th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
-                </a>
-            </div>-->
+                        <img class="img-thumbnail img-responsive" th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
+                    </a>
+                    <div>
+                        <div class="vvp" th:text="${spirit.type}"></div>
+                        <!--<div class="vvp" th:text="${'점수'+ spirit.spiritScore +'점'}"></div>-->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- End  Works Section -->
 
 
-            <!-- <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-                 <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-                     <a th:href="@{/spirits}" class="item-wrap fancybox">
-                         <div class="work-info">
-                             <h3>Boxed Water</h3>
-                             <span>Web</span>
-                         </div>
-                         <img class="img-fluid" src="assets/img/img_1.jpg">
-                     </a>
-                 </div>
-
-
-                 <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-                     <a href="spirits.html" class="item-wrap fancybox">
-                         <div class="work-info">
-                             <h3>Build Indoo</h3>
-                             <span>Photography</span>
-                         </div>
-                         <img class="img-fluid" src="assets/img/img_2.jpg">
-                     </a>
-                 </div>
- -->
-
-               <!-- <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
-                    <a th:href="@{/spirits/{id}(id=${spirit.id})}" class="item-wrap fancybox">
-                        <div class="work-info">
-                            <h3>Boxed Water</h3>
-                            <span>Web</span>
-                        </div>
-                        <img class="img-fluid" th:src="@{${spirit.spiritImg}}">
-                    </a>
-                </div>
--->
-
-               <!-- <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
-                    <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
-                        <div class="work-info">
-                            <h3>Boxed Water</h3>
-                            <span>Web</span>
-                        </div>
-                        <img class="img-thumbnail img-responsive" src="#" th:src="@{'/uploadFiles/' + ${spirit.spiritImg}}" alt="">
-                    </a>
-                </div>
--->
-
 
 
     <!-- ======= Clients Section ======= -->
-    <section class="section">
-        <div class="container">
-            <div class="row justify-content-center text-center mb-4">
-                <div class="col-5">
-                    <h3 class="h3 heading">My Clients</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4 col-sm-4 col-md-2">
-                    <a href="#" class="client-logo"><img src="assets/img/logo-adobe.png" alt="Image" class="img-fluid"></a>
-                </div>
-                <div class="col-4 col-sm-4 col-md-2">
-                    <a href="#" class="client-logo"><img src="assets/img/logo-uber.png" alt="Image" class="img-fluid"></a>
-                </div>
-                <div class="col-4 col-sm-4 col-md-2">
-                    <a href="#" class="client-logo"><img src="assets/img/logo-apple.png" alt="Image" class="img-fluid"></a>
-                </div>
-                <div class="col-4 col-sm-4 col-md-2">
-                    <a href="#" class="client-logo"><img src="assets/img/logo-netflix.png" alt="Image" class="img-fluid"></a>
-                </div>
-                <div class="col-4 col-sm-4 col-md-2">
-                    <a href="#" class="client-logo"><img src="assets/img/logo-nike.png" alt="Image" class="img-fluid"></a>
-                </div>
-                <div class="col-4 col-sm-4 col-md-2">
-                    <a href="#" class="client-logo"><img src="assets/img/logo-google.png" alt="Image" class="img-fluid"></a>
-                </div>
-
-            </div>
-        </div>
-    </section><!-- End Clients Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section class="section">
-        <div class="container">
-            <div class="row justify-content-center text-center mb-4">
-                <div class="col-5">
-                    <h3 class="h3 heading">My Services</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <span class="la la-cube la-3x mb-4"></span>
-                    <h4 class="h4 mb-2">Web Design</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-                    <ul class="list-unstyled list-line">
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-                        <li>Non pariatur nisi</li>
-                        <li>Magnam soluta quod</li>
-                        <li>Lorem ipsum dolor</li>
-                        <li>Cumque quae aliquam</li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <span class="la la-mobile la-3x mb-4"></span>
-                    <h4 class="h4 mb-2">Mobile Applications</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-                    <ul class="list-unstyled list-line">
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-                        <li>Non pariatur nisi</li>
-                        <li>Magnam soluta quod</li>
-                        <li>Lorem ipsum dolor</li>
-                        <li>Cumque quae aliquam</li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <span class="la la-image la-3x mb-4"></span>
-                    <h4 class="h4 mb-2">Graphic Design</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-                    <ul class="list-unstyled list-line">
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-                        <li>Non pariatur nisi</li>
-                        <li>Magnam soluta quod</li>
-                        <li>Lorem ipsum dolor</li>
-                        <li>Cumque quae aliquam</li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <span class="la la-search la-3x mb-4"></span>
-                    <h4 class="h4 mb-2">SEO</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
-                    <ul class="list-unstyled list-line">
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
-                        <li>Non pariatur nisi</li>
-                        <li>Magnam soluta quod</li>
-                        <li>Lorem ipsum dolor</li>
-                        <li>Cumque quae aliquam</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section><!-- End Services Section -->
 
 
 </main><!-- End #main -->
@@ -282,12 +154,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     <p class="mb-1">&copy;2021-2021 WIKIN Inc. All Rights Reserved </p>
                 </div>
             </div>
-            <div class="col-sm-6 social text-md-right">
+           <!-- <div class="col-sm-6 social text-md-right">
                 <a href="#"><span class="icofont-twitter"></span></a>
                 <a href="#"><span class="icofont-facebook"></span></a>
                 <a href="#"><span class="icofont-dribbble"></span></a>
                 <a href="#"><span class="icofont-behance"></span></a>
-            </div>
+            </div>-->
         </div>
     </div>
 </footer>

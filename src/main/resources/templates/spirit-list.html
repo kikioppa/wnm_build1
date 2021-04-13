@@ -11,7 +11,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="assets/img/favico.ico" rel="icon">
     <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -41,43 +41,38 @@
                         <!-- <p class="mb-0">위스키를 즐겁게</p>-->
                     </div>
                     <div class="col-md-12 col-lg-6 text-left text-lg-right" data-aos="fade-up" data-aos-delay="100">
-                        <div id="filters" class="filters">
-                            <a href="#" data-filter="*" class="active">All</a>
-                            <a href="#" data-filter=".web">Whiskey</a>
-                            <a href="#" data-filter=".design">Wine</a>
-                            <a href="#" data-filter=".branding">Brandy</a>
-                            <a href="#" data-filter=".photography">Beer</a>
+                        <div>
+                            <!--<a href="#" data-filter="*" class="active">All</a>-->
+                            <a class="vv" th:href="@{/spirit/1}" >Whiskey &nbsp</a>
+                            <!--<a class="vv" th:href="@{/spirit/1}" >프로모션 &nbsp</a>-->
+                            <!--   <a href="#" data-filter=".design">Wine</a>
+                               <a href="#" data-filter=".branding">Brandy</a>
+                               <a href="#" data-filter=".photography">Beer</a>-->
+                            <!--<a th:href="@{/kakao_signup}">회원가입</a>-->
                         </div>
-                        <!--<a th:href="@{/kakao_signup}">회원가입</a>-->
-
-
 
                         <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                             <a th:href="@{/add_spirit}">스피릿 등록</a>
                             <a th:href="@{/add_price}">가격 등록</a>
                         </div>
 
-
-                        <!-- <th:block th:each="authority : ${#authentication.authorities}">
-                             <div th:text="${authority}"></div>
-                         </th:block>
-     -->
                         <div th:if="${#authorization.expr('isAuthenticated()')}">
-                            <h4 th:text="${#authentication.name}+'님 환영합니다.'"></h4>
+                            <h5 th:text="${#authentication.name}+'님 환영합니다.'"></h5>
                             <a th:href="@{/kakao/logout}">Logout</a>
                         </div>
 
                         <div th:unless="${#authorization.expr('isAuthenticated()')}">
-                            <a th:href="@{/kakao/login}">로그인</a>
+                            <a th:href="@{/kakao/login}" style="color: white">로그인</a>
                         </div>
+
+
                     </div>
                 </div>
 
-
                 <!-- 스피릿 리스트 시작-->
-                <h3>가격정보 및 테이스팅 노트</h3>
+                <h5>가격정보 및 테이스팅 노트</h5>
                 <div class="row">
-                    <div id="portfolio-grid" class=" item web col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
+                    <div class=" item web col-sm-6 col-md-4 col-lg-4 mb-4" th:each="spirit : ${spiritIdx}">
                         <a th:href="@{/spirit_view/{id}(id=${spirit.id})}" class="item-wrap fancybox">
                             <div class="work-info">
                                 <h3 th:text="${spirit.spiritTitle}"></h3>
@@ -85,6 +80,10 @@
                             </div>
                             <img class="img-thumbnail img-responsive" src="#"  th:src="@{'/zzz/' +${spirit.spiritImg}}" alt="">
                         </a>
+                        <div>
+                            <div class="vvp" th:text="${spirit.type}"></div>
+                            <!--<div class="vvp" th:text="${'점수'+ spirit.spiritScore +'점'}"></div>-->
+                        </div>
                     </div>
 
 
@@ -101,7 +100,6 @@
                     <a th:href="@{/spirit/{lastPage}(lastPage=${lastPage})}">>></a>
                     </span>
                     </div>
-
 
 
                 </div>
@@ -126,12 +124,7 @@
                     <p class="mb-1">&copy;2021-2021 WIKIN Inc. All Rights Reserved </p>
                 </div>
             </div>
-            <div class="col-sm-6 social text-md-right">
-                <a href="#"><span class="icofont-twitter"></span></a>
-                <a href="#"><span class="icofont-facebook"></span></a>
-                <a href="#"><span class="icofont-dribbble"></span></a>
-                <a href="#"><span class="icofont-behance"></span></a>
-            </div>
+
         </div>
     </div>
 </footer>

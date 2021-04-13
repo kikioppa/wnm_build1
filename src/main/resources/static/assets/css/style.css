@@ -1,6 +1,5 @@
 
 body {
-  font-family: "Inconsolata", monospace;
   color: #0d1e2d;
 }
 
@@ -10,6 +9,20 @@ a {
 
 a:hover {
   color: #000;
+}
+
+.vv{
+
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+}
+
+.vvp{
+
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  text-overline-color: pink;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
@@ -345,7 +358,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 .custom-navbar .navbar-brand {
-  font-size: 1.7rem;
+  font-family: "Inconsolata", monospace;
+  font-size: 3.7rem;
 }
 
 /* Burger */

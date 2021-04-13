@@ -37,7 +37,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     initialize: true
-    password: Shjshj131@@
+    password:
     testWhileIdle: true
     url: jdbc:mysql://localhost:3306/yoroyo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
