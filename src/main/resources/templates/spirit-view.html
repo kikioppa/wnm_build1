@@ -197,6 +197,10 @@
             </div>
         </div>
     </div>
+
+    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+        <a th:href="@{/delete_spirit/{id}(id=${spirit.id})}" class="item-wrap fancybox">삭제</a>
+    </div>
     </section>
 
 

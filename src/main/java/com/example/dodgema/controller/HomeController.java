@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.dodgema.service.*;
 import com.example.dodgema.repository.SpiritRepository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -22,6 +23,7 @@ public class HomeController {
 
     private final PagingService pagingService;
     private final SpiritRepository spiritRepository;
+    private final SpiritService spiritService;
     private final int maxItem = 6;
     private final int viewPage = 5;
 
@@ -57,6 +59,16 @@ public class HomeController {
         return "spirit-list";
     }
 
+
+    @GetMapping("/board/search")
+    public String search(@RequestParam(value="keyword") String keyword, Model model) {
+
+
+        model.addAttribute("spirit", spiritService.searchPosts(keyword));
+
+        //System.out.println("검색결과"+ spirit);
+        return "redirect:list";
+    }
 
 /*
     @GetMapping(value = "/{sort}/{page}")

@@ -6,28 +6,25 @@
 #trust-store: C:/Users/irlink/Desktop/서버/wikin.kr/trust.jks
 #trust-store-password: qeqe3000
 
-
 #카카로 로그인
 #Redirect URI : https://wikin.kr/kakao/callback
 #Logout Redirect URI : https://wikin.kr/logout
 # http://localhost/kakao/callback
 # http://localhost/logout
-
 server:
   http2:
     enabled: true
   ssl:
     enabled: true
-    key-store: wikin.pfx
+    key-store: C:/Users/irlink/Desktop/서버/wikin.kr/wikin.pfx
     key-store-password: qeqe3000
     key-store-type: PKCS12
-    trust-store: trust.jks
+    trust-store: C:/Users/irlink/Desktop/서버/wikin.kr/trust.jks
     trust-store-password: qeqe3000
   port: 443
   servlet:
     session:
       tracking-modes: cookie
-
 mybatis:
   mapper-locations: mapper/StudentMapper.xml
   type-aliases-package: com.example.dodgema.domain.Student
@@ -37,11 +34,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     initialize: true
-    password:
+    password: root
     testWhileIdle: true
     url: jdbc:mysql://localhost:3306/yoroyo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-
 
   devtools:
     livereload:
@@ -83,7 +79,7 @@ spring:
     suffix: .html
 
 file:
-  path: /root/img/
+  path: C:/Users/irlink/Documents/uploadFiles/
 
 jwt:
   salt: MYSALT
@@ -93,7 +89,7 @@ wikin:
   key: qeqe3000
 
 url:
-  add: https://wikin.kr:443/
+  add: http://localhost:80/
   #Customize the local save path of the uploaded file
 
 

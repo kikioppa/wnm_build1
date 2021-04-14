@@ -6,6 +6,7 @@ import com.example.dodgema.repository.SpiritRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +23,9 @@ public class SpiritService {
         return spiritRepository.save(spirit);
     }
 
+    public void deleteSpiritById(long id) { spiritRepository.deleteById(id);}
+
+    //public Spirit updateSpirit(Spirit spirit){ return spiritRepository.update(spirit);}
     public List<Spirit> AllSpirit(){
         return spiritRepository.findAll();
     }
@@ -29,6 +33,13 @@ public class SpiritService {
     public Spirit findById(Long id){
         return spiritRepository.findById(id).get();
     }
+
+    public List<Spirit> searchPosts(String keyword) {
+
+        return spiritRepository.findBySpiritNameContaining(keyword);
+
+    }
+
 
 /*
     List<Spirit> AllSpirit();

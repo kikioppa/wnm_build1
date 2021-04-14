@@ -4,6 +4,7 @@ package com.example.dodgema.controller;
 
 import com.example.dodgema.model.Price;
 import com.example.dodgema.model.Spirit;
+import com.example.dodgema.repository.SpiritRepository;
 import com.example.dodgema.service.PriceService;
 import com.example.dodgema.service.SpiritService;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +24,11 @@ import java.time.LocalDateTime;
 public class SpiritController {
     private final SpiritService spiritService;
     private final PriceService priceService;
-
-    public SpiritController(SpiritService spiritService, PriceService priceService) {
+    private final SpiritRepository spiritRepository;
+    public SpiritController(SpiritService spiritService, PriceService priceService, SpiritRepository spiritRepository) {
         this.spiritService = spiritService;
         this.priceService = priceService;
+        this.spiritRepository = spiritRepository;
     }
 
 
@@ -123,6 +125,34 @@ public class SpiritController {
         model.addAttribute("price",priceService.findTo(spiritService.findById(id).getSpiritCode()));
         return "spirit-view";
     }
+
+
+    @GetMapping("/delete_spirit/{id}")
+    public String deleteSpirit(@PathVariable("id") long id, Model model) {
+
+        spiritService.deleteSpiritById(id);
+        //model.addAttribute("spirit", spiritService.findById(id));
+        //model.addAttribute("price",priceService.findTo(spiritService.findById(id).getSpiritCode()));
+        return "redirect:/";
+    }
+
+
+//사진 data 떄문에 업데이트 기능 추후 수정
+   /* @GetMapping("/spirit_edit/{id}")
+    public String editSpirit(@PathVariable("id") long id, Model model) {
+
+        model.addAttribute("spirit", spiritService.findById(id));
+        model.addAttribute("price",priceService.findTo(spiritService.findById(id).getSpiritCode()));
+        return "spirit-update";
+    }*/
+
+ /*   @PostMapping("/spirit_update/{id}")
+    public String updateSpirit(@PathVariable("id") long id, Model model,Spirit spirit) {
+
+        spiritService.saveSpirit(spirit);
+        model.addAttribute("spirit", spiritService.findById(id));
+        return "spirit-list";
+    }*/
 
 
     @RequestMapping("/price_data/{spiritCode}")

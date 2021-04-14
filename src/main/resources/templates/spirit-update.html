@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>위스키를 즐겁게</title>
+
+    <!-- Favicons -->
+    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <!--    <link href="../static/css/timer.css" th:href="@{/css/timer.css}" rel="stylesheet" media="screen" />-->
+
+</head>
+
+
+<body>
+<header th:insert="fragments/header"></header>
+
+<main id="main">
+
+    <section>
+        <div class="container">
+            <form th:action="@{/spirit_update/{id}(id=${spirit.id})}" th:object="${spirit}" enctype="multipart/form-data" method="post">
+
+                <div class="form-group">
+                    <label for="spiritImg">스피릿 사진</label>
+                    <input style="width: 50%" type="file" th:field="*{spiritImg}"  id="spiritImg" name ="spiritImg" accept="image/png, image/jpeg" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="spiritName">스피릿 코드</label>
+                    <input type="text" th:field="*{spiritCode}" class="form-control" id="spiritCode" style="width: 50%" placeholder="예)123">
+                </div>
+
+                <div class="form-group">
+                    <label for="spiritName">스피릿 이름</label>
+                    <input type="text" th:field="*{spiritName}" class="form-control" id="spiritName" style="width: 50%" placeholder="예)위스키 or 와인">
+                </div>
+
+                <div class="form-group">
+                    <label for="spiritName">스피릿 타이틀</label>
+                    <input type="text" th:field="*{spiritTitle}" class="form-control" id="spiritTitle" style="width: 50%" placeholder="예)43 Year Old 1971 Batch 11">
+                </div>
+
+                <div class="form-group">
+                    <label for="spiritContent">스피릿 내용</label>
+                    <textarea type="textarea" th:field="*{spiritContent}" class="form-control" id="spiritContent" style="width: 50%" placeholder="설명"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">리쿼 타입</label>
+                    <textarea type="textarea" th:field="*{type}" class="form-control" id="type" style="width: 50%" placeholder="설명"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="caskType">캐스크 타입</label>
+                    <input type="text" th:field="*{caskType}" class="form-control" id="caskType">
+                </div>
+
+                <div class="form-group">
+                    <label for="caskType">캐스크 넘버</label>
+                    <input type="text" th:field="*{caskNumber}" class="form-control" id="caskNumber">
+                </div>
+
+                <div class="form-group">
+                    <label for="abv">알콜 도수</label>
+                    <input style="width: 50%" type="text" th:field="*{abv}" class="form-control" id="abv" placeholder="예) 48.5%(퍼센트 붙여주세요)">
+                </div>
+                <div class="form-group">
+                    <label for="region">생산 지역</label>
+                    <input type="text" th:field="*{region}" class="form-control" id="region" placeholder="예)하이랜드,보르도">
+                </div>
+
+                <div class="form-group">
+                    <label for="smokey">스모키</label>
+                    <input style="width: 50%" type="text" th:field="*{smokey}" class="form-control" id="smokey" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="peat">피트</label>
+                    <input style="width: 50%" type="text" th:field="*{peat}" class="form-control" id="peat" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="herbal">허브</label>
+                    <input style="width: 50%" type="text" th:field="*{herbal}" class="form-control" id="herbal" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="oily">오일</label>
+                    <input style="width: 50%" type="text" th:field="*{oily}" class="form-control" id="oily" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="full">full함 (바디감)</label>
+                    <input style="width: 50%" type="text" th:field="*{full}" class="form-control" id="full" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="rich">리치함</label>
+                    <input style="width: 50%" type="text" th:field="*{rich}" class="form-control" id="rich" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="briny">바다향 (브라이니)</label>
+                    <input style="width: 50%" type="text" th:field="*{briny}" class="form-control" id="briny" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="salty">짠맛</label>
+                    <input style="width: 50%" type="text" th:field="*{salty}" class="form-control" id="salty" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="sweat">달달함</label>
+                    <input style="width: 50%" type="text" th:field="*{sweat}" class="form-control" id="sweat" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="vanilla">바닐라</label>
+                    <input style="width: 50%" type="text" th:field="*{vanilla}" class="form-control" id="vanilla" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="tart">타르트</label>
+                    <input style="width: 50%" type="text" th:field="*{tart}" class="form-control" id="tart" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="fruity">프루티(과일향)</label>
+                    <input style="width: 50%" type="text" th:field="*{fruity}" class="form-control" id="fruity" placeholder="1-100까지 숫자만 입력">
+                    <br>
+                    <label for="floral">플로랄(꽃향)</label>
+                    <input style="width: 50%" type="text" th:field="*{floral}" class="form-control" id="floral" placeholder="1-100까지 숫자만 입력">
+                </div>
+                <br>
+                <br>
+                <div class="form-group">
+                    <label for="spiritScore">스코어</label>
+                    <input type="text" th:field="*{spiritScore}" class="form-control" style="width: 50%" id="spiritScore" placeholder="1-100점">
+                </div>
+
+                <div class="form-group">
+                    <label for="rare">희귀도</label>
+                    <input type="text" th:field="*{rare}" class="form-control" style="width: 50%" id="rare" placeholder="1-5">
+                </div>
+
+                <button type="submit" class="btn btn-primary" value="dd">저장</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>
