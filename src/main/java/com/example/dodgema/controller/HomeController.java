@@ -60,14 +60,14 @@ public class HomeController {
     }
 
 
-    @GetMapping("/board/search")
-    public String search(@RequestParam(value="keyword") String keyword, Model model) {
+    @GetMapping("/spirit/{page}/search")
+    public String search(@PathVariable("page") int page,@RequestParam(value="keyword") String keyword, Model model) {
+        List<?> spirit = pagingService.getBoardPage(spiritService.searchPosts(keyword), page, this.maxItem, this.viewPage, model);
 
-
-        model.addAttribute("spirit", spiritService.searchPosts(keyword));
+        model.addAttribute("spirit", spirit);
 
         //System.out.println("검색결과"+ spirit);
-        return "redirect:list";
+        return "spirit-search-list";
     }
 
 /*

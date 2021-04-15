@@ -35,18 +35,15 @@
 <nav class="navbar navbar-light custom-navbar">
     <div class="container">
         <a class="navbar-brand" href="/">WIKIN</a>
+        <div id="seach" class="search">
+            <form th:action="@{/spirit/1/search}" method="GET">
+                <div>
+                    <input name="keyword" type="text" placeholder="스피릿 이름으로 검색">
+                    <button class="btn-primary">검색하기</button>
+                </div>
 
-        <form action="/board/search" method="GET">
-            <div>
-                <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-            </div>
-            <button>검색하기</button>
-        </form>
-
-
-
-
-
+            </form>
+        </div>
 
 
         <a href="#" class="burger" data-toggle="collapse" data-target="#main-navbar">

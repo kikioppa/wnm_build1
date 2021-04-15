@@ -36,10 +36,9 @@ public class SpiritService {
 
     public List<Spirit> searchPosts(String keyword) {
 
-        return spiritRepository.findBySpiritNameContaining(keyword);
+        return spiritRepository.findBySpiritTitleContaining(keyword);
 
     }
-
 
 /*
     List<Spirit> AllSpirit();
