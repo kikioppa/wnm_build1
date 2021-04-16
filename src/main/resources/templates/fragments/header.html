@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <!-- ======= Navbar ======= -->
 <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
     <div class="container py-2 py-md-5">
@@ -32,23 +33,27 @@
 
     </div>
 </div>
+
+
 <nav class="navbar navbar-light custom-navbar">
+
     <div class="container">
         <a class="navbar-brand" href="/">WIKIN</a>
         <div id="seach" class="search">
             <form th:action="@{/spirit/1/search}" method="GET">
-                <div>
-                    <input name="keyword" type="text" placeholder="스피릿 이름으로 검색">
-                    <button class="btn-primary">검색하기</button>
-                </div>
-
+                    <div class="container-1">
+                       <span class="icon"><i class="fa fa-search" style="color: #005cbf"></i></span>
+                        <input id="search" name="keyword" type="searc" placeholder="스피릿 이름으로 검색">
+                    </div>
             </form>
         </div>
 
 
-        <a href="#" class="burger" data-toggle="collapse" data-target="#main-navbar">
+
+
+   <!--     <a href="#" class="burger" data-toggle="collapse" data-target="#main-navbar">
             <span></span>
-        </a>
+        </a>-->
 
     </div>
 </nav>
