@@ -3,77 +3,85 @@
 window.onload = function(){
 
     $.ajax({
-        url: "https://wikin.kr:443/price_data/" + spiritCode,
+        url: "http://localhost:80/price_data/" + spiritCode,
         method: "GET",
         success: function(data) {
             var chartData = [];
             var chartXdata = []
+            let prev = 1;
+            let prev2 = 80;
             console.log(data);
             console.log("추세데이타");
+
             for (var i in data) {
-                chartData.push(data[i].price)
+                //prev += 5 - Math.random() * 10;
+                chartData.push({x:data[i].date,y:data[i].price})
                 chartXdata.push(data[i].date)
             }
+
+
+            var totalDuration = 100;
+            var delayBetweenPoints = totalDuration / data.length;
+            var previousY = (ctx) => ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y;
+            var animation = {
+                x: {
+                    type: 'number',
+                    easing: 'linear',
+                    duration: delayBetweenPoints,
+                    from: NaN, // the point is initially skipped
+                    delay(ctx) {
+                        if (ctx.type !== 'data' || ctx.xStarted) {
+                            return 0;
+                        }
+                        ctx.xStarted = true;
+                        return ctx.index * delayBetweenPoints;
+                    }
+                },
+                y: {
+                    type: 'number',
+                    easing: 'linear',
+                    duration: delayBetweenPoints,
+                    from: 100,
+                    delay(ctx) {
+                        if (ctx.type !== 'data' || ctx.yStarted) {
+                            return 0;
+                        }
+                        ctx.yStarted = true;
+                        return ctx.index * delayBetweenPoints;
+                    }
+                }
+            };
 
             var ctx = document.getElementById('quoteChart');
 
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: chartXdata,
                     datasets: [{
-                        label: '거래금액 :',
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        radius: 0,
                         data: chartData,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(0, 0, 0, 0)',
-                            'rgba(0, 0, 0, 0)',
-                            'rgba(0, 0, 0, 0)',
-                            'rgba(0, 0, 0, 0)',
-                            'rgba(0, 0, 0, 0)',
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(255, 99, 132, 1)',
-                        ],
-                        pointStyle:'crossRot'
-                        ,
-                        borderWidth: 2
-                        ,
-                        lineTension:0.4
                     }]
                 },
                 options: {
-
-                    responsive:true,
+                    animation,
+                    interaction: {
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: false
+                    },
                     scales: {
-                        xAxes: [{
-                            gridLines: {
-
-                                drawOnChartArea: false
-                            },
-                            display:false
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                fontColor: "#8e7b96",
-                                padding:10
-                            },
-                            gridLines: {
-                                drawBorder: false,
-                                drawTicks:false,
-                                drawOnChartArea: false
-                            },
-                            position:'right'
-                        }]
+                        x: {
+                            type: 'linear'
+                        }
                     }
                 }
             })
 
             $.ajax({
-                url: "https://wikin.kr:443/taste_data/"+ spiritId,
+                url: "http://localhost:80/taste_data/"+ spiritId,
                 method: "GET",
                 success: function(result) {
 
@@ -104,7 +112,7 @@ window.onload = function(){
                         tastingData.push(result.briny)
                         tastingXdata.push(result.floral)
                     }*/
-                    console.log(result[i]+"냥냥");
+
 
                     var ctx = document.getElementById('tastingChart');
 
@@ -131,7 +139,7 @@ window.onload = function(){
                                     '#BC8F8F'
                                 ],
                                 borderColor: [
-                                  '#fff'
+                                    '#fff'
                                 ]
                             }]
                         }

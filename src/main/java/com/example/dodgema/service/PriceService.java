@@ -32,5 +32,5 @@ public class PriceService {
     }
 
     public List<Price> findBySpiritCode(Long spiritCode){ return priceRepository.findBySpiritCode(spiritCode); }
-    public List<Price> findTo(Long spiritCode){ return priceRepository.findTop5BySpiritCodeOrderByDate(spiritCode); }
+    public List<Price> findTo(Long spiritCode){ return priceRepository.findTop5BySpiritCodeOrderByDateDesc(spiritCode); }
 }
