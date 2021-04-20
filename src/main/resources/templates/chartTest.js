@@ -3,26 +3,17 @@
 window.onload = function(){
 
     $.ajax({
-        url: "http://localhost:80/price_data/" + spiritCode,
+        url: "http://wikin.kr:443/price_data/" + spiritCode,
         method: "GET",
         success: function(data) {
             var chartData = [];
             var chartXdata = []
-            let prev = 1;
-            let prev2 = 80;
             console.log(data);
             console.log("추세데이타");
-
             for (var i in data) {
-                //prev += 5 - Math.random() * 10;
-                xdate = data[i].date
                 chartData.push(data[i].price)
-                chartXdata.push(xdate.substr(0,10))
+                chartXdata.push(data[i].date)
             }
-
-            console.log(data);
-            console.log("추세데이타");
-
 
             var ctx = document.getElementById('quoteChart');
 
@@ -31,61 +22,58 @@ window.onload = function(){
                 data: {
                     labels: chartXdata,
                     datasets: [{
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderWidth: 1,
-                        radius: 0,
-                        label: false,
+                        label: '거래금액 :',
                         data: chartData,
-                        fill:true
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(0, 0, 0, 0)',
+                            'rgba(0, 0, 0, 0)',
+                            'rgba(0, 0, 0, 0)',
+                            'rgba(0, 0, 0, 0)',
+                            'rgba(0, 0, 0, 0)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        pointStyle:'crossRot'
+                        ,
+                        borderWidth: 2
+                        ,
+                        lineTension:0.4
                     }]
                 },
                 options: {
 
-                    interaction: {
-                        intersect: false
-                    },
-                    plugins: {
-                        legend: false,
-                        tooltip:{
-                            displayColors:false,
-                            callbacks: {
-                                label: function (context) {
-                                    var label = context.dataset.label || '';
-
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'KRW' }).format(context.parsed.y);
-                                    }
-                                    return label;
-                                }
-                            }
-                         /*   backgroundColor:'#fff8bd',
-                            titleColor:'red',
-                            bodyColor: 'blue'*/
-                        },
-                    },
+                    responsive:true,
                     scales: {
-                        xAxes: {
-                            display: false
-                        },
-                        yAxes:{
-                            beginAtZero: true,
-                            grid:{
-                                borderColor: 'white',
-                                tickColor:'white',
+                        xAxes: [{
+                            gridLines: {
+
                                 drawOnChartArea: false
                             },
-                            position: 'right'
-                        }
+                            display:false
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: "#8e7b96",
+                                padding:10
+                            },
+                            gridLines: {
+                                drawBorder: false,
+                                drawTicks:false,
+                                drawOnChartArea: false
+                            },
+                            position:'right'
+                        }]
                     }
                 }
             })
 
             $.ajax({
-                url: "http://localhost:80/taste_data/"+ spiritId,
+                url: "http://wikin.kr:443/taste_data/"+ spiritId,
                 method: "GET",
                 success: function(result) {
 
@@ -116,7 +104,7 @@ window.onload = function(){
                         tastingData.push(result.briny)
                         tastingXdata.push(result.floral)
                     }*/
-
+                    console.log(result[i]+"냥냥");
 
                     var ctx = document.getElementById('tastingChart');
 
