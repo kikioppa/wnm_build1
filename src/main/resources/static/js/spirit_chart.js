@@ -3,13 +3,12 @@
 window.onload = function(){
 
     $.ajax({
-        url: "http://localhost:80/price_data/" + spiritCode,
+        url: "https://wikin.kr:443/price_data/" + spiritCode,
         method: "GET",
         success: function(data) {
             var chartData = [];
             var chartXdata = []
-            let prev = 1;
-            let prev2 = 80;
+
             console.log(data);
             console.log("추세데이타");
 
@@ -85,7 +84,7 @@ window.onload = function(){
             })
 
             $.ajax({
-                url: "http://localhost:80/taste_data/"+ spiritId,
+                url: "https://wikin.kr:443/taste_data/"+ spiritId,
                 method: "GET",
                 success: function(result) {
 

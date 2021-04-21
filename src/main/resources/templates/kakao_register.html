@@ -26,21 +26,115 @@
     <!-- Template Main CSS File -->
     <link href="/assets/css/style.css" rel="stylesheet">
 
+    <style>
+
+
+        .modal_wrap{
+            display: none;
+            width: 500px;
+            height: 500px;
+            overflow-y: auto;
+            position: absolute;
+            top:50%;
+            left: 50%;
+            margin: -250px 0 0 -250px;
+            background:#eee;
+            z-index: 2;
+        }
+
+        .modal_wrap2{
+            display: none;
+            width: 500px;
+            height: 500px;
+            overflow-y: auto;
+            position: absolute;
+            top:50%;
+            left: 50%;
+            margin: -250px 0 0 -250px;
+            background:#eee;
+            z-index: 2;
+        }
+
+
+        .black_bg{
+            display: none;
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color:rgba(0, 0,0, 0.5);
+            top:0;
+            left: 0;
+            z-index: 1;
+        }
+        .modal_close{
+            width: 26px;
+            height: 26px;
+            position: absolute;
+            top: 1px;
+            right: 0;
+        }
+        .modal_close> a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            background:url(https://img.icons8.com/metro/26/000000/close-window.png);
+            text-indent: -9999px;
+        }
+
+    </style>
+    <script>
+
+        window.onload = function() {
+
+            function onClick() {
+                document.querySelector('.modal_wrap').style.display ='block';
+                document.querySelector('.black_bg').style.display ='block';
+            }
+
+            function onClick2() {
+                document.querySelector('.modal_wrap2').style.display ='block';
+                document.querySelector('.black_bg').style.display ='block';
+            }
+
+            function offClick() {
+                document.querySelector('.modal_wrap').style.display ='none';
+                document.querySelector('.black_bg').style.display ='none';
+            }
+
+            function offClick2() {
+                document.querySelector('.modal_wrap2').style.display ='none';
+                document.querySelector('.black_bg').style.display ='none';
+            }
+
+            document.getElementById('modal_btn').addEventListener('click', onClick);
+            document.getElementById('modal_btn2').addEventListener('click', onClick2);
+            document.querySelector('.modal_close').addEventListener('click', offClick);
+
+
+        };
+
+
+
+
+
+
+    </script>
 </head>
 
 <body>
 <header th:insert="fragments/header"></header>
 
-<main id="main">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+    <main>
+
+
+        <div style="margin-top: 20px">
+            <div class="col-md-6 col-md-offset-3" style="margin:auto">
+                <h3>회원가입</h3>
                 <form autocomplete="off" action="#" th:action="@{/kakao_completed}"
                       th:object="${user}" method="post" class="form-horizontal"
                       role="form">
-                    <h2>회원가입하기</h2>
-
                     <div class="form-group">
                         <div class="col-sm-9">
                         <span>사용 이메일(ID로 사용됩니다.)</span><input type="text" th:value = "${email}" id = "email"
@@ -59,22 +153,61 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-9">
-                            <button type="submit" class="btn btn-primary btn-block">회원가입 요청</button>
+
+
+
+
+                    <span class="checkbox-label">
+                      <label>
+                        <span class="checkbox-wrap">
+                          <input type="checkbox" name="ckbox1" id="checkbox1">
+                          <span class="icon"></span>
+                        </span>
+                        이용약관
+                      </label>
+                    </span>
+
+
+                    <a id="modal_btn" style="font-size: larger">모달창아 나와랏</a>
+                        <div class="black_bg"></div>
+                        <div class="modal_wrap">
+                            <div class="modal_close"><a href="#">close</a></div>
+                            <div>
+                                모달달 <br>
+                                모달달 <br>
+                            </div>
+                        </div>
+
+                    <span class="checkbox-label">
+                      <label>
+                        <span class="checkbox-wrap">
+                          <input type="checkbox" name="ckbox2" id="checkbox2">
+                          <span class="icon"></span>
+                        </span>
+                        개인정보처리방침
+                      </label>
+                    </span>
+
+                    <a id="modal_btn2" style="font-size: larger">모달창아 나와랏2</a>
+                    <div class="black_bg"></div>
+                    <div class="modal_wrap2">
+                        <div class="modal_close"><a href="#">close</a></div>
+                        <div>
+                            모달달 2<br>
+                            모달달2 <br>
                         </div>
                     </div>
-                    <span th:utext="${successMessage}"></span>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary btn-block">회원가입 요청</button>
+                            </div>
+                        </div>
                 </form>
             </div>
         </div>
-    </div>
+    </main>
 
-
-
-
-
-</main><!-- End #main -->
 
 
 
