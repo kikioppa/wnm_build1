@@ -82,6 +82,21 @@
             text-indent: -9999px;
         }
 
+        .modal_close2{
+            width: 26px;
+            height: 26px;
+            position: absolute;
+            top: 1px;
+            right: 0;
+        }
+        .modal_close2> a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            background:url(https://img.icons8.com/metro/26/000000/close-window.png);
+            text-indent: -9999px;
+        }
+
     </style>
     <script>
 
@@ -110,6 +125,7 @@
             document.getElementById('modal_btn').addEventListener('click', onClick);
             document.getElementById('modal_btn2').addEventListener('click', onClick2);
             document.querySelector('.modal_close').addEventListener('click', offClick);
+            document.querySelector('.modal_close2').addEventListener('click', offClick2);
 
 
         };
@@ -155,7 +171,7 @@
 
 
 
-
+                    <div class="form-group">
 
                     <span class="checkbox-label">
                       <label>
@@ -168,7 +184,7 @@
                     </span>
 
 
-                    <a id="modal_btn" style="font-size: larger">모달창아 나와랏</a>
+                    <a id="modal_btn" style="font-size: larger">내용 보기</a>
                         <div class="black_bg"></div>
                         <div class="modal_wrap">
                             <div class="modal_close"><a href="#">close</a></div>
@@ -177,7 +193,9 @@
                                 모달달 <br>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="form-group fg">
                     <span class="checkbox-label">
                       <label>
                         <span class="checkbox-wrap">
@@ -188,16 +206,16 @@
                       </label>
                     </span>
 
-                    <a id="modal_btn2" style="font-size: larger">모달창아 나와랏2</a>
+                    <a id="modal_btn2" style="font-size: larger; float:right">내용보기</a>
                     <div class="black_bg"></div>
                     <div class="modal_wrap2">
-                        <div class="modal_close"><a href="#">close</a></div>
+                        <div class="modal_close2"><a href="#">close</a></div>
                         <div>
                             모달달 2<br>
                             모달달2 <br>
                         </div>
                     </div>
-
+                    </div>
                         <div class="form-group">
                             <div class="col-sm-9">
                                 <button type="submit" class="btn btn-primary btn-block">회원가입 요청</button>

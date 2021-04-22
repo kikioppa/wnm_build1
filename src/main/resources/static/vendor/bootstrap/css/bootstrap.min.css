@@ -2929,6 +2929,11 @@ input[type=search] {
 	margin-bottom: 15px
 }
 
+.form-group.fg {
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+}
+
 .checkbox, .radio {
 	position: relative;
 	display: block;
