@@ -39,7 +39,7 @@ public class HomeController {
         return "index";
     }
 /*
-    @GetMapping(value = "/spirit_list")
+    @GetMapping(value = "/spirit_list")ff
     public String spiritList(HttpSession session, Model model) {
         List<Spirit> spiritIdx = spiritRepository.findAll();
 
