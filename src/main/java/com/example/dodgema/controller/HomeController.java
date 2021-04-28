@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
     //private final 멤버서비스 들어가야댐
     //spirit 수정페이지 (멀티파일 호환해서)
+    //데이터 랭크
     private final PagingService pagingService;
     private final SpiritRepository spiritRepository;
     private final SpiritService spiritService;
