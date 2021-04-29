@@ -22,6 +22,7 @@ public class HomeController {
     //private final 멤버서비스 들어가야댐
     //spirit 수정페이지 (멀티파일 호환해서)
     //데이터 랭크
+    //사용자 등록가능하게끔
     private final PagingService pagingService;
     private final SpiritRepository spiritRepository;
     private final SpiritService spiritService;
