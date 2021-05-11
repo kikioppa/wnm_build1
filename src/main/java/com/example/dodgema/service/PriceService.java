@@ -31,6 +31,6 @@ public class PriceService {
         return priceRepository.findById(id).get();
     }
 
-    public List<Price> findBySpiritCode(Long spiritCode){ return priceRepository.findBySpiritCode(spiritCode); }
+    public List<Price> findBySpiritCode(Long spiritCode){ return priceRepository.findBySpiritCodeOrderByDateAsc(spiritCode); }
     public List<Price> findTo(Long spiritCode){ return priceRepository.findTop5BySpiritCodeOrderByDateDesc(spiritCode); }
 }

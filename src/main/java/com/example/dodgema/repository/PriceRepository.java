@@ -13,7 +13,7 @@ public interface PriceRepository extends JpaRepository<Price, Long> {
 
     List<Price> findAll();
 
-    List<Price> findBySpiritCode(Long spiritCode);
+    List<Price> findBySpiritCodeOrderByDateAsc(Long spiritCode);
     List<Price> findTop5BySpiritCodeOrderByDateDesc(Long spiritCode);
     //List<Price> findBySpiritCode(Long spiritCode);
 }
