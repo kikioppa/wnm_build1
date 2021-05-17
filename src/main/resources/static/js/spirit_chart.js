@@ -3,7 +3,7 @@
 window.onload = function(){
 
     $.ajax({
-        url: "http://wikin.kr:443/price_data/" + spiritCode,
+        url: "https://wikin.kr:443/price_data/" + spiritCode,
         method: "GET",
         success: function(data) {
             var chartData = [];
