@@ -85,26 +85,24 @@ public class SpiritController {
             spirit.setAbv(spirit.getAbv());
             spirit.setSpiritName(spirit.getSpiritName());
             spirit.setSpiritImg(savedName);
-            spirit.setCaskNumber(spirit.getCaskNumber());
             spirit.setSpiritScore(spirit.getSpiritScore());
             spirit.setCaskType(spirit.getCaskType());
             spirit.setSpiritRating(spirit.getSpiritRating());
-            spirit.setVanilla(spirit.getVanilla());
-            spirit.setTart(spirit.getTart());
-            spirit.setSweat(spirit.getSweat());
-            spirit.setSmokey(spirit.getSmokey());
-            spirit.setSalty(spirit.getSalty());
-            spirit.setRich(spirit.getRich());
-            spirit.setPeat(spirit.getPeat());
-            spirit.setRegion(spirit.getRegion());
-            spirit.setRare(spirit.getRare());
-            spirit.setOily(spirit.getOily());
+
+            spirit.setWiney(spirit.getWiney());
             spirit.setFloral(spirit.getFloral());
             spirit.setFruity(spirit.getFruity());
-            spirit.setFull(spirit.getFull());
-            spirit.setBriny(spirit.getBriny());
+            spirit.setCereal(spirit.getCereal());
+            spirit.setFeinty(spirit.getFeinty());
+            spirit.setWoody(spirit.getWoody());
+            spirit.setPeaty(spirit.getPeaty());
+            spirit.setSulphury(spirit.getSulphury());
+
+            spirit.setRegion(spirit.getRegion());
+            spirit.setRare(spirit.getRare());
+
+
             spirit.setType(spirit.getType());
-            spirit.setHerbal(spirit.getHerbal());
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -167,19 +165,14 @@ public class SpiritController {
     public Map showSpirit(@PathVariable("id") long id) {
         Spirit spirit = spiritService.findById(id);
         Map result = new HashMap<String,Object>();
-        result.put("briny",spirit.getBriny());
+        result.put("cereal",spirit.getCereal());
         result.put("floral",spirit.getFloral());
-        result.put("oily",spirit.getOily());
-        result.put("full",spirit.getFull());
-        result.put("herbal",spirit.getHerbal());
-        result.put("peat",spirit.getPeat());
+        result.put("winey",spirit.getWiney());
+        result.put("woody",spirit.getWoody());
+        result.put("feinty",spirit.getFeinty());
+        result.put("peaty",spirit.getPeaty());
         result.put("fruity",spirit.getFruity());
-        result.put("rich",spirit.getRich());
-        result.put("salty",spirit.getSalty());
-        result.put("smokey",spirit.getSmokey());
-        result.put("sweat",spirit.getSweat());
-        result.put("tart",spirit.getTart());
-        result.put("vanilla",spirit.getVanilla());
+        result.put("sulphury",spirit.getSulphury());
         return result;
     }
 /*

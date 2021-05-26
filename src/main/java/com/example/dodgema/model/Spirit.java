@@ -37,8 +37,6 @@ public class Spirit {
     private  String spiritContent;
     @Column(name = "spirit_code")
     private Long spiritCode;
-    @Column(name = "cask_number")
-    private String caskNumber;
     @OneToMany(fetch = EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name="spirit_code")
     private Collection<Price> price;
@@ -59,32 +57,22 @@ public class Spirit {
     private String type;
     @Column(name = "region")
     private String region;
-    @Column(name = "smokey")
-    private int smokey;
-    @Column(name = "peat")
-    private int peat;
-    @Column(name = "herbal")
-    private int herbal;
-    @Column(name = "oily")
-    private int oily;
-    @Column(name = "full")
-    private int full;
-    @Column(name = "rich")
-    private int rich;
-    @Column(name = "sweat")
-    private int sweat;
-    @Column(name = "briny")
-    private int briny;
-    @Column(name = "salty")
-    private int salty;
-    @Column(name = "vanilla")
-    private int vanilla;
-    @Column(name = "tart")
-    private int tart;
     @Column(name = "fruity")
-    private int fruity;
+    private Integer fruity;
     @Column(name = "floral")
-    private int floral;
+    private Integer floral;
+    @Column(name = "peaty")
+    private Integer peaty;
+    @Column(name = "cereal")
+    private Integer cereal;
+    @Column(name = "winey")
+    private Integer winey;
+    @Column(name = "feinty")
+    private Integer feinty;
+    @Column(name = "sulphury")
+    private Integer sulphury;
+    @Column(name = "woody")
+    private Integer woody;
 
     @ManyToMany(mappedBy = "items", fetch = LAZY)
     private List<Category> category = new ArrayList<>();

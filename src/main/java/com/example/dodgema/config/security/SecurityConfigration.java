@@ -78,7 +78,8 @@ public class SecurityConfigration extends WebSecurityConfigurerAdapter {
                                         "/price_data/**",
                                         "/taste_data/**",
                                         "/spirit/**",
-                                        "/.well-known/**"
+                                        "/.well-known/**",
+                                        "/ads.txt"
                         ).permitAll()
                 .antMatchers("/add_price").hasAuthority("ADMIN")
                 .antMatchers("/add_spirit").hasAuthority("ADMIN")

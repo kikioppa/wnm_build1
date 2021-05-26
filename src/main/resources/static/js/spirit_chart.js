@@ -90,22 +90,18 @@ window.onload = function(){
 
 
                     var tastingData = [];
-                    var tastingXdata = ['브라이니 (바다향)','플로럴 (꽃향)','오일','바디감 (full)','허브','피트','프루티 (과일향)'
-                        ,'리치함','짠맛','스모키','스윗 (sweat)','타르트 (tart)','바닐라'];
+                    var tastingXdata = ['Fruity (과일향)','Floral(꽃향)','Winey(와인향)','Feinty(잔향)','Sulphury(황향)','Woody(나무향)','Peaty(피트향)'
+                        ,'Cereal'];
 
-                    tastingData.push(result.briny
-                        ,result.floral
-                        ,result.oily
-                        ,result.full
-                        ,result.herbal
-                        ,result.peat
+                    tastingData.push(
+                        result.cereal
+                        ,result.peaty
                         ,result.fruity
-                        ,result.rich
-                        ,result.salty
-                        ,result.smokey
-                        ,result.sweat
-                        ,result.tart
-                        ,result.vanilla
+                        ,result.floral
+                        ,result.winey
+                        ,result.feinty
+                        ,result.sulphury
+                        ,result.woody
 
                     )
                     //tastingdata.push(result.floral)
@@ -120,13 +116,15 @@ window.onload = function(){
                     var ctx = document.getElementById('tastingChart');
 
                     var tastingChart = new Chart(ctx, {
-                        type: 'polarArea',
+                        type: 'radar',
                         data: {
                             labels: tastingXdata,
                             datasets: [{
+                                label: 'Simple Whisky Flavour Wheel',
                                 data: tastingData,
+                                fill: true,
                                 backgroundColor: [
-                                    '#3A3335',
+                                    'rgba(255, 153, 153, 0.5)',
                                     '#06D6A0',
                                     '#EF767A',
                                     '#9adbc2',
@@ -143,8 +141,29 @@ window.onload = function(){
                                 ],
                                 borderColor: [
                                     '#fff'
-                                ]
+                                ],
+
                             }]
+
+                        },
+                        options:{
+                            scale: {
+                                gridLines: {
+                                    color: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
+                                },
+                                pointLabels :{
+                                    fontSize: 12,
+                                },
+                                ticks: {
+                                    suggestedMin: 0,
+                                    suggestedMax: 10,
+                                    display: false,
+                                    maxTicksLimit: 5
+                                }
+                            }
+
+
+
                         }
 
                     })
