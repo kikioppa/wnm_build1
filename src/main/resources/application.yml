@@ -1,0 +1,98 @@
+
+#################################################################
+#key-store: C:/Users/irlink/Desktop/서버/wikin.kr/wikin.pfx
+#key-store-password: qeqe3000
+#key-store-type: PKCS12
+#trust-store: C:/Users/irlink/Desktop/서버/wikin.kr/trust.jks
+#trust-store-password: qeqe3000
+
+#카카로 로그인
+#Redirect URI : https://wikin.kr/kakao/callback
+#Logout Redirect URI : https://wikin.kr/logout
+# http://localhost/kakao/callback
+# http://localhost/logout
+server:
+  http2:
+    enabled: true
+  ssl:
+    enabled: true
+    key-store: C:/Users/irlink/Desktop/서버/wikin.kr/wikin.pfx
+    key-store-password: qeqe3000
+    key-store-type: PKCS12
+    trust-store: C:/Users/irlink/Desktop/서버/wikin.kr/trust.jks
+    trust-store-password: qeqe3000
+  port: 443
+  servlet:
+    session:
+      tracking-modes: cookie
+mybatis:
+  mapper-locations: mapper/StudentMapper.xml
+  type-aliases-package: com.example.dodgema.domain.Student
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    initialize: true
+    password: root
+    testWhileIdle: true
+    url: jdbc:mysql://localhost:3306/yoroyo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  queries:
+    confirmation_token-query: select confirmation_token from confirmation_token where user_id=?
+    roles-query: select u.email, r.role from user u inner join user_role ur on(u.user_id=ur.user_id)
+      inner join role r on(ur.role_id=r.role_id) where u.email=?
+    users-query: select email, password, is_enabled from user where email=?
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+      location:
+      resolve-lazily: false
+      enabled: true
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+
+file:
+  path: C:/Users/irlink/Documents/uploadFiles/
+
+jwt:
+  salt: MYSALT
+  expmin: 60
+
+wikin:
+  key: qeqe3000
+
+url:
+  add: http://localhost:80/
+  #Customize the local save path of the uploaded file
+
+
+# insert role = 1,ADMIN
+# email id pwd
+# mart_status bit -> boolean -> insert 1
